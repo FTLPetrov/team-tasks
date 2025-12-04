@@ -1,4 +1,4 @@
-export type User = {
+export interface User {
   id: number;
   displayName: string;
   email: string;
@@ -7,4 +7,6 @@ export type User = {
   lastName: string;
   createdAt: string;
   updatedAt: string;
-};
+}
+
+export type CreateUserInput = Omit<User, "id" | "createdAt" | "updatedAt">;

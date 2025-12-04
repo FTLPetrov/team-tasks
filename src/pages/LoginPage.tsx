@@ -10,44 +10,74 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../utils/hooks/useAuth";
 import { useGetAllUsers } from "../api/controllers/userController";
+import type { User } from "../api/types/userTypes";
 
 export const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [secret, setSecret] = useState("");
   const [loginError, setLoginError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+
   const fetchUsers = useGetAllUsers();
   const { data } = fetchUsers;
 
-  const { login } = useAuth();
+  const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const stored = localStorage.getItem("user");
-    if (stored) {
-      navigate("/");
+    if (isAuthenticated) {
+      navigate("/", { replace: true });
     }
-  }, [navigate]);
+  }, [isAuthenticated, navigate]);
+
+  const getEmailError = () => {
+    const trimmedEmail = email.trim();
+    if (!trimmedEmail) return "";
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(trimmedEmail)) {
+      return "Not a valid email address.";
+    }
+    return "";
+  };
+
+  const getPasswordError = () => {
+    const trimmedSecret = secret.trim();
+    if (!trimmedSecret) return "";
+
+    if (trimmedSecret.length < 8) {
+      return "Password should be at least 8 characters.";
+    }
+    if (!/\d/.test(trimmedSecret)) {
+      return "Password should contain at least one number.";
+    }
+    return "";
+  };
+
+  const emailError = getEmailError();
+  const passwordError = getPasswordError();
+  const isFormValid =
+    !!email && !!secret && !emailError && !passwordError && !isSubmitting;
 
   const handleLogin = async () => {
-    if (isSubmitting) {
-      return;
-    }
+    if (!isFormValid || isSubmitting) return;
 
     const trimmedEmail = email.trim().toLowerCase();
     const trimmedSecret = secret.trim();
-
-    if (!trimmedEmail || !trimmedSecret) {
-      return;
-    }
 
     setLoginError("");
     setIsSubmitting(true);
 
     try {
-      const existingUser = data?.find(
-        ({ email: userEmail }) => userEmail?.toLowerCase() === trimmedEmail
-      );
+      if (!data || !Array.isArray(data)) {
+        setLoginError("User data is still loading. Please try again.");
+        return;
+      }
+
+      const existingUser = data.find(
+        ({ email: userEmail }) =>
+          userEmail?.toLowerCase().trim() === trimmedEmail
+      ) as User | undefined;
 
       if (!existingUser) {
         setLoginError("User doesn't exist.");
@@ -60,39 +90,10 @@ export const LoginPage = () => {
       }
 
       login(existingUser);
-      navigate("/");
     } finally {
       setIsSubmitting(false);
     }
   };
-  const getEmailError = () => {
-    const trimmedEmail = email.trim();
-    if (!trimmedEmail) {
-      return "";
-    }
-    if (!trimmedEmail.includes("@")) {
-      return "Not a valid email";
-    }
-    return "";
-  };
-
-  const getPasswordError = () => {
-    const trimmedSecret = secret.trim();
-    if (!trimmedSecret) {
-      return "";
-    }
-    if (trimmedSecret.length <= 8) {
-      return "Password should be more than 8 characters.";
-    }
-    if (!/\d/.test(trimmedSecret)) {
-      return "Password should contain at least one number.";
-    }
-    return "";
-  };
-
-  const emailError = getEmailError();
-  const passwordError = getPasswordError();
-  const isFormValid = !!email && !!secret && !emailError && !passwordError;
 
   return (
     <Box
@@ -103,8 +104,9 @@ export const LoginPage = () => {
         alignItems: "center",
       }}
     >
-      <Avatar sx={{ m: 1, bgcolor: "primary.light" }}></Avatar>
+      <Avatar sx={{ m: 1, bgcolor: "primary.light" }} />
       <Typography variant="h5">Login</Typography>
+
       <Box sx={{ mt: 1 }}>
         <TextField
           error={!!emailError}
@@ -130,29 +132,30 @@ export const LoginPage = () => {
           id="secret"
           label="Password"
           name="secret"
-          autoFocus
           value={secret}
           onChange={(e) => setSecret(e.target.value)}
           helperText={passwordError || " "}
         />
 
         <Button
-          disabled={!isFormValid || isSubmitting}
+          disabled={!isFormValid}
           fullWidth
           variant="contained"
           sx={{ mt: 3, mb: 2 }}
           onClick={handleLogin}
         >
-          Login
+          {isSubmitting ? "Logging in..." : "Login"}
         </Button>
+
         {loginError && (
           <Typography color="error" variant="body2" sx={{ mt: 1 }}>
             {loginError}
           </Typography>
         )}
-        <Grid container justifyContent={"flex-end"}>
+
+        <Grid container justifyContent="flex-end">
           <Grid>
-            <Link to="/register"> Don't have an account? Register</Link>
+            <Link to="/register">Don't have an account? Register</Link>
           </Grid>
         </Grid>
       </Box>

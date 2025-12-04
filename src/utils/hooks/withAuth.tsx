@@ -1,19 +1,22 @@
 import { useEffect, type ReactNode } from "react";
-import { useAuth } from "./useAuth";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "./useAuth";
 
 type Props = { children: ReactNode };
 
-export const ProtectedRoute = (props: Props) => {
-    const {children} = props;
-  const { user } = useAuth();
+export const ProtectedRoute = ({ children }: Props) => {
+  const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!user) {
-      navigate(`/login`);
+    if (!isAuthenticated) {
+      navigate("/login", { replace: true });
     }
-  }, [user, navigate]);
+  }, [isAuthenticated, navigate]);
 
-  return children;
+  if (!isAuthenticated) {
+    return null;
+  }
+
+  return <>{children}</>;
 };
