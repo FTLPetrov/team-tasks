@@ -84,7 +84,7 @@ export const TeamDialogFormButton = ({ team }: Props) => {
           variant="contained"
           startIcon={<EditIcon />}
           onClick={handleOpen}
-        ></Button>
+        />
       ) : (
         <Button
           variant="contained"

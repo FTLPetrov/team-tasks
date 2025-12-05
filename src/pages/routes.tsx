@@ -6,7 +6,6 @@ import { TeamsPage } from "./TeamsPage";
 import { RegisterPage } from "./RegisterPage";
 import { LoginPage } from "./LoginPage";
 import { ProtectedRoute } from "../utils/hooks/withAuth";
-import { TeamDetailsPage } from "./TeamDetailsPage";
 
 export const routes: RouteObject[] = [
   {
@@ -26,10 +25,6 @@ export const routes: RouteObject[] = [
       {
         path: "/teams",
         element: <TeamsPage />,
-      },
-      {
-        path: "/team-details",
-        element: <TeamDetailsPage />,
       },
     ],
   },
