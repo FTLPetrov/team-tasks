@@ -1,24 +1,120 @@
 {
   "teams": [
     {
-      "id": 1,
-      "name": "Team Marvin",
-      "users": [1, 2],
-      "createdAt": "2025-01-10T10:00:00Z",
-      "updatedAt": "2025-01-10T10:00:00Z"
+      "id": "5906",
+      "name": "Test",
+      "users": [
+        "1",
+        "2"
+      ],
+      "createdAt": "12/5/2025",
+      "updatedAt": "12/5/2025",
+      "owner": "1"
     },
     {
-      "id": 2,
-      "name": "Team Quark",
-      "users": [],
-      "createdAt": "2025-01-10T10:00:00Z",
-      "updatedAt": "2025-01-10T10:00:00Z"
+      "id": "8414",
+      "name": "Req",
+      "users": [
+        "1"
+      ],
+      "createdAt": "12/5/2025",
+      "updatedAt": "12/5/2025",
+      "owner": "1"
+    },
+    {
+      "id": "3dab",
+      "name": "Admin tean",
+      "users": [
+        "5a85"
+      ],
+      "createdAt": "12/5/2025",
+      "updatedAt": "12/5/2025",
+      "owner": "8cf1"
+    },
+    {
+      "id": "97ab",
+      "name": "Admin team2",
+      "users": [
+        "1"
+      ],
+      "createdAt": "12/5/2025",
+      "updatedAt": "12/5/2025",
+      "owner": "8cf1"
+    },
+    {
+      "id": "1629",
+      "name": "qwerqewr",
+      "users": [
+        "1"
+      ],
+      "createdAt": "12/5/2025",
+      "updatedAt": "12/5/2025",
+      "owner": "1"
+    },
+    {
+      "id": "4f6c",
+      "name": "qwerqereqwr",
+      "users": [
+        "1"
+      ],
+      "createdAt": "12/5/2025",
+      "updatedAt": "12/5/2025",
+      "owner": "1"
+    },
+    {
+      "id": "4e2f",
+      "name": "qwerqewr",
+      "users": [
+        "3"
+      ],
+      "createdAt": "12/5/2025",
+      "updatedAt": "12/5/2025",
+      "owner": "1"
+    },
+    {
+      "id": "c1d8",
+      "name": "qewrqwer",
+      "users": [
+        "2"
+      ],
+      "createdAt": "12/5/2025",
+      "updatedAt": "12/5/2025",
+      "owner": "1"
+    },
+    {
+      "id": "2459",
+      "name": "qewrqewr",
+      "users": [
+        "2"
+      ],
+      "createdAt": "12/5/2025",
+      "updatedAt": "12/5/2025",
+      "owner": "1"
+    },
+    {
+      "id": "9977",
+      "name": "eeee",
+      "users": [
+        "2"
+      ],
+      "createdAt": "12/5/2025",
+      "updatedAt": "12/5/2025",
+      "owner": "1"
+    },
+    {
+      "id": "7548",
+      "name": "ewrqwerewqrrrrrr",
+      "users": [
+        "2"
+      ],
+      "createdAt": "12/5/2025",
+      "updatedAt": "12/5/2025",
+      "owner": "1"
     }
   ],
-
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "displayName": "Alice Johnson",
       "email": "alice@example.com",
       "secret": "alice123456",
@@ -28,7 +124,7 @@
       "updatedAt": "2025-01-10T10:00:00Z"
     },
     {
-      "id": 2,
+      "id": "2",
       "displayName": "B. Lee",
       "email": "bob@example.com",
       "secret": "bob123456",
@@ -38,7 +134,7 @@
       "updatedAt": "2025-01-10T10:00:00Z"
     },
     {
-      "id": 3,
+      "id": "3",
       "displayName": "Charlie",
       "email": "charlie@example.com",
       "secret": "charlie123456",
@@ -46,48 +142,90 @@
       "lastName": "Chen",
       "createdAt": "2025-01-10T10:00:00Z",
       "updatedAt": "2025-01-10T10:00:00Z"
+    },
+    {
+      "id": "4",
+      "displayName": "Qwerqwerqwer QWE",
+      "email": "charlie@example.com",
+      "secret": "charlie123456",
+      "firstName": "Charlie",
+      "lastName": "Qqwer",
+      "createdAt": "2025-01-10T10:00:00Z",
+      "updatedAt": "2025-01-10T10:00:00Z"
+    },
+    {
+      "id": "5a85",
+      "firstName": "Qwer",
+      "lastName": "Qwer",
+      "displayName": "Qwer Qwer",
+      "email": "admin@gmail.com",
+      "secret": "qwerqwer1",
+      "createdAt": "12/3/2025",
+      "updatedAt": "12/3/2025"
+    },
+    {
+      "id": "8cf1",
+      "firstName": "Admin",
+      "lastName": "Admin",
+      "displayName": "Admin Admin",
+      "email": "admin@admin.com",
+      "secret": "admin1234",
+      "createdAt": "12/5/2025",
+      "updatedAt": "12/5/2025"
     }
   ],
-
   "projects": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Project Atlas",
       "description": "Internal analytics platform",
       "status": "active",
-      "adminIds": [1],
-      "memberIds": [2, 3],
+      "adminIds": [
+        1
+      ],
+      "memberIds": [
+        2,
+        3
+      ],
       "teamIds": [],
       "createdAt": "2025-01-10T10:00:00Z",
       "updatedAt": "2025-01-10T10:00:00Z"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Mobile Banking App",
       "description": "Banking app MVP",
       "status": "paused",
-      "adminIds": [2],
-      "memberIds": [1, 3],
-      "teamIds": [1],
+      "adminIds": [
+        2
+      ],
+      "memberIds": [
+        1,
+        3
+      ],
+      "teamIds": [
+        1
+      ],
       "createdAt": "2025-01-10T10:00:00Z",
       "updatedAt": "2025-01-10T10:00:00Z"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Web Banking App",
       "description": "Banking app MVP for WEB",
       "status": "completed",
-      "adminIds": [2],
+      "adminIds": [
+        2
+      ],
       "memberIds": [],
       "teamIds": [],
       "createdAt": "2025-01-10T10:00:00Z",
       "updatedAt": "2025-01-10T10:00:00Z"
     }
   ],
-
   "tasks": [
     {
-      "id": 1,
+      "id": "1",
       "title": "Create initial wireframes",
       "description": "Basic screens for dashboard",
       "status": "todo",
@@ -98,7 +236,7 @@
       "updatedAt": "2025-01-10T10:00:00Z"
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "Implement login page",
       "description": "Basic email/password form",
       "status": "in-progress",
@@ -109,7 +247,7 @@
       "updatedAt": "2025-01-10T10:00:00Z"
     },
     {
-      "id": 3,
+      "id": "3",
       "title": "API Integration",
       "description": "Connect axios to json-server",
       "status": "todo",

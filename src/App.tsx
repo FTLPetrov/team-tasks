@@ -5,6 +5,7 @@ import { createTheme, CssBaseline } from "@mui/material";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./config/queryClient.config";
 import { AuthProvider } from "./utils/providers/AuthProvider";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const router = createBrowserRouter(routes);
 
@@ -14,6 +15,7 @@ function App() {
   return (
     <AuthProvider>
       <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools initialIsOpen={false} />
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <RouterProvider router={router} />
