@@ -12,5 +12,5 @@ export const useRedirectIfLogged = () => {
     if (data?.length && data[0].email == user?.email) {
       navigate("/", { replace: true });
     }
-  }, [navigate, data]);
+  }, [navigate, data, user?.email]);
 };

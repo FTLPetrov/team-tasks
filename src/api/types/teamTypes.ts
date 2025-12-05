@@ -1,17 +1,8 @@
 export interface Team {
-  id: number;
+  id: string;
   name: string;
-  users: number[];
+  users: string[];
   createdAt: string;
   updatedAt: string;
-}
-
-export interface CreateTeamDto {
-  name: string;
-  users?: number[];
-}
-
-export interface UpdateTeamDto {
-  name?: string;
-  users?: number[];
+  owner: string;
 }

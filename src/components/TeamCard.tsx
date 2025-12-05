@@ -1,20 +1,25 @@
-import {
-  Card,
-  CardActions,
-  CardContent,
-  Button,
-  Typography,
-} from "@mui/material";
+import { Card, CardActions, CardContent, Typography } from "@mui/material";
+
 import type { Team } from "../api/types/teamTypes";
-import { useNavigate } from "react-router-dom";
+import { DeleteTeamButton } from "./common/DeleteTeamButton";
+import { useGetAllUsers } from "../api/controllers/userController";
+import { useAuth } from "../utils/hooks/useAuth";
+import { TeamDialogFormButton } from "./common/TeamDialogFormButton";
 
 type TeamCardProps = {
   team: Team;
 };
 
 export const TeamCard = ({ team }: TeamCardProps) => {
-  const membersCount = team.users?.length ?? 0;
-  const navigate = useNavigate();
+  const user = useAuth();
+  const { data: users = [] } = useGetAllUsers();
+  const members = team.users.map(
+    (userToFind) => users.find((user) => user.id === userToFind)?.displayName
+  );
+
+  const owner = users.find((user) => user.id === team.owner)?.displayName;
+
+  const isOwner = team.owner === user.user?.id;
 
   return (
     <Card sx={{ minWidth: 275 }}>
@@ -24,7 +29,7 @@ export const TeamCard = ({ team }: TeamCardProps) => {
         </Typography>
 
         <Typography variant="body2" color="text.secondary" gutterBottom>
-          Members: {membersCount}
+          Members: {members.join(", ")}
         </Typography>
 
         <Typography variant="caption" color="text.secondary" display="block">
@@ -33,13 +38,17 @@ export const TeamCard = ({ team }: TeamCardProps) => {
         <Typography variant="caption" color="text.secondary" display="block">
           Updated: {new Date(team.updatedAt).toLocaleDateString()}
         </Typography>
+        <Typography>Owner: {owner}</Typography>
       </CardContent>
 
       <CardActions>
-        <Button onClick={() => { navigate("/team-details") }}>
-          VIEW TEAM
-        </Button>
+        {isOwner ? (
+          <>
+            <TeamDialogFormButton team={team} />
+            <DeleteTeamButton team={team} />
+          </>
+        ) : null}
       </CardActions>
     </Card>
   );
-}
+};

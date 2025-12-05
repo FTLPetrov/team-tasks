@@ -5,7 +5,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const userKeys = {
   allUsers: ["allUsers"],
-  userDetails: (userId?: number) => [
+  userDetails: (userId?: string) => [
     userKeys.allUsers,
     `userDetails-${userId}`,
   ],
@@ -22,7 +22,7 @@ export const useGetAllUsers = () => {
   });
 };
 
-export const useGetUser = (userId: number | undefined) => {
+export const useGetUser = (userId: string | undefined) => {
   return useQuery<User[]>({
     queryKey: userKeys.userDetails(userId),
     queryFn: async () => {

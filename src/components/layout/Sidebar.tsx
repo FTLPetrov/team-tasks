@@ -11,12 +11,14 @@ import {
 import InboxIcon from "@mui/icons-material/Inbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { NavLink } from "react-router-dom";
+import FolderOpenIcon from "@mui/icons-material/FolderOpen";
 
 const drawerWidth = 240;
 
 const navItems = [
   { label: "Home", path: "/", icon: <InboxIcon /> },
   { label: "Teams", path: "/teams", icon: <MailIcon /> },
+  { label: "Projects", path: "/projects", icon: <FolderOpenIcon /> },
 ];
 
 export const Sidebar = () => {
