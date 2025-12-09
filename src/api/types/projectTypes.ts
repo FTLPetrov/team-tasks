@@ -7,7 +7,6 @@ export interface Project {
   createdBy: string;
   createdAt: string;
   updatedAt: string;
-  startDate?: string;
   teamIds: string[];
   adminIds: string[];
   memberIds: string[];
