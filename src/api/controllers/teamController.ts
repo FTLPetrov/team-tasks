@@ -5,7 +5,7 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 
 export const teamKeys = {
   allTeams: ["allTeams"],
-  teamDetails: (teamId: number) => [teamKeys.allTeams, `teamDetails-${teamId}`],
+  teamDetails: (teamId: string) => [teamKeys.allTeams, `teamDetails-${teamId}`],
 };
 
 export const useGetAllTeams = () => {
@@ -18,7 +18,7 @@ export const useGetAllTeams = () => {
   });
 };
 
-export const useGetTeamById = (teamId: number) => {
+export const useGetTeamById = (teamId: string) => {
   return useQuery<Team>({
     queryKey: teamKeys.teamDetails(teamId),
     queryFn: async () => {
