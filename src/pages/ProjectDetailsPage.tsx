@@ -5,18 +5,24 @@ import {
   Paper,
   Typography,
 } from "@mui/material";
-import { useGetProjectById } from "../api/controllers/projectsController";
-import { useParams } from "react-router-dom";
+import {
+  useDeleteProject,
+  useGetProjectById,
+} from "../api/controllers/projectsController";
+import { useNavigate, useParams } from "react-router-dom";
 import { ProjectDetailsView } from "../components/ProjectDetailsView";
 import { useState } from "react";
 import { ProjectDetailsEdit } from "../components/ProjectDetailsEdit";
 import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 import CloseIcon from "@mui/icons-material/Close";
 
 export const ProjectsDetailsPage = () => {
   const { id } = useParams<string>();
   const { data, isLoading, isError, error } = useGetProjectById(id!);
   const [isEditing, setIsEditing] = useState(false);
+  const { mutateAsync: mutateAsyncDelete } = useDeleteProject(id!);
+  const naviate = useNavigate();
 
   if (isLoading) {
     return (
@@ -59,6 +65,14 @@ export const ProjectsDetailsPage = () => {
             Project Details
           </Typography>
           <Box sx={{ display: "flex", gap: 1 }}>
+            <Button
+              onClick={() => mutateAsyncDelete().then(()=>naviate('/projects'))}
+              color="error"
+              variant="contained"
+              startIcon={<DeleteIcon />}
+            >
+              Delete
+            </Button>
             {isEditing ? (
               <Button
                 color="error"
