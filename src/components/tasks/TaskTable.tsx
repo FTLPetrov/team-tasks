@@ -7,13 +7,20 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useGetAllTasks } from "../../api/controllers/tasksController";
 import { useGetAllUsers } from "../../api/controllers/userController";
-import { Box, Button } from "@mui/material";
+import { Box, Pagination } from "@mui/material";
 import { TaskDialogFormButton } from "./TaskDialogFormButton";
 import { TaskDeleteButton } from "./TaskDeleteButton";
+import { useState } from "react";
 
 export const TaskTable = () => {
   const { data: rows = [] } = useGetAllTasks();
   const { data: users = [] } = useGetAllUsers();
+  const [page, setPage] = useState(1);
+  const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
+  };
+  const rowsPerPage = 5;
+  const lastPerPage = page * rowsPerPage;
 
   return (
     <TableContainer component={Paper}>
@@ -31,7 +38,7 @@ export const TaskTable = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((task) => {
+          {rows.slice(lastPerPage - rowsPerPage, lastPerPage).map((task) => {
             const assignedMember = users.find(
               (user) => user.id === task.assignedUserId
             )?.displayName;
@@ -65,6 +72,11 @@ export const TaskTable = () => {
           })}
         </TableBody>
       </Table>
+      <Pagination
+        count={Math.ceil(rows.length / rowsPerPage)}
+        page={page}
+        onChange={handleChange}
+      />
     </TableContainer>
   );
 };
