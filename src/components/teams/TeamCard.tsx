@@ -1,10 +1,10 @@
 import { Card, CardActions, CardContent, Typography } from "@mui/material";
 
-import type { Team } from "../api/types/teamTypes";
-import { DeleteTeamButton } from "./common/DeleteTeamButton";
-import { useGetAllUsers } from "../api/controllers/userController";
-import { useAuth } from "../utils/hooks/useAuth";
-import { TeamDialogFormButton } from "./common/TeamDialogFormButton";
+import type { Team } from "../../api/types/teamTypes";
+import { DeleteTeamButton } from "./DeleteTeamButton";
+import { useGetAllUsers } from "../../api/controllers/userController";
+import { useAuth } from "../../utils/hooks/useAuth";
+import { TeamDialogFormButton } from "./TeamDialogFormButton";
 
 type TeamCardProps = {
   team: Team;

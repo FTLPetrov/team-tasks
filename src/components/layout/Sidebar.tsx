@@ -17,6 +17,7 @@ const drawerWidth = 240;
 const navItems = [
   { label: "Home", path: "/", icon: <InboxIcon /> },
   { label: "Teams", path: "/teams", icon: <MailIcon /> },
+  { label: "Projects", path: "/projects", icon: <InboxIcon /> },
 ];
 
 export const Sidebar = () => {

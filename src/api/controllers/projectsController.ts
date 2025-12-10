@@ -5,9 +5,9 @@ import { queryClient } from "../../config/queryClient.config";
 
 export const projectKeys = {
   allProjects: ["allProjects"],
-  projectDetails: (projectId: string) => [
-    projectKeys.allProjects,
-    `projectDetails-${projectId}`,
+  projectDetails: (id: string) => [
+    ...projectKeys.allProjects,
+    `projectDetails-${id}`,
   ],
 };
 
@@ -21,14 +21,14 @@ export const useGetAllProjects = () => {
   });
 };
 
-export const useGetProjectById = (projectId: string) => {
+export const useGetProjectById = (id: string) => {
   return useQuery<Project>({
-    queryKey: projectKeys.projectDetails(projectId),
+    queryKey: projectKeys.projectDetails(id),
     queryFn: async () => {
-      const { data } = await axiosClient.get<Project>(`/projects/${projectId}`);
+      const { data } = await axiosClient.get<Project>(`/projects/${id}`);
       return data;
     },
-    enabled: !!projectId,
+    enabled: !!id,
   });
 };
 
