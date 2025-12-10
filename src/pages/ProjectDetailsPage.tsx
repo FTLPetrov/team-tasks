@@ -13,6 +13,8 @@ import { ProjectDetailsEdit } from "../components/projects/ProjectDetailsEdit";
 import EditIcon from "@mui/icons-material/Edit";
 import CloseIcon from "@mui/icons-material/Close";
 import { DeleteProjectButton } from "../components/projects/DeleteProjectButton";
+import { TaskTable } from "../components/tasks/TaskTable";
+import { TaskDialogFormButton } from "../components/tasks/TaskDialogFormButton";
 
 export const ProjectsDetailsPage = () => {
   const { id } = useParams();
@@ -87,6 +89,12 @@ export const ProjectsDetailsPage = () => {
           <ProjectDetailsView />
         )}
       </Paper>
+      <Box sx={{ display: "flex", justifyContent: "flex-start", mb: 2 }}>
+        <TaskDialogFormButton />
+      </Box>
+      <Box sx={{ mt: 3, mb: 6 }}>
+        <TaskTable />
+      </Box>
     </Box>
   );
 };

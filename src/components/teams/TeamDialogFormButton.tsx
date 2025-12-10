@@ -107,7 +107,7 @@ export const TeamDialogFormButton = ({ team }: Props) => {
             label="Name your team"
             type="text"
             value={teamName}
-            onChange={(e) => setTeamName(e.target.value)}
+            onChange={(pesho) => setTeamName(pesho.target.value)}
             fullWidth
           />
           <Autocomplete
