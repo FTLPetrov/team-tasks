@@ -4,7 +4,7 @@ import { useDeleteTeam } from "../../api/controllers/teamController";
 import type { Team } from "../../api/types/teamTypes";
 import { useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { AlertDialog } from "./AlertDialog";
+import { AlertDialog } from "../common/AlertDialog";
 
 type DeleteTeamButtonProps = {
   team: Team;

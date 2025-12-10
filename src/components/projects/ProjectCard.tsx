@@ -1,5 +1,5 @@
 import { Button, Card, CardContent, Typography } from "@mui/material";
-import type { Project } from "../api/types/projectTypes";
+import type { Project } from "../../api/types/projectTypes";
 import { useNavigate } from "react-router-dom";
 
 type ProjectCardProps = {

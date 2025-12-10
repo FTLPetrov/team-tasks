@@ -1,7 +1,7 @@
 import { Box, Typography, CircularProgress } from "@mui/material";
 import { useGetAllTeams } from "../api/controllers/teamController";
-import { TeamCard } from "../components/TeamCard";
-import { TeamDialogFormButton } from "../components/common/TeamDialogFormButton";
+import { TeamCard } from "../components/teams/TeamCard";
+import { TeamDialogFormButton } from "../components/teams/TeamDialogFormButton";
 import { useAuth } from "../utils/hooks/useAuth";
 
 export const TeamsPage = () => {

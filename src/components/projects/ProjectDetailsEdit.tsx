@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 import {
   Autocomplete,
   Box,
@@ -11,20 +12,20 @@ import {
   Typography,
   type SelectChangeEvent,
 } from "@mui/material";
-import { useGetAllUsers } from "../api/controllers/userController";
-import { useGetAllTeams } from "../api/controllers/teamController";
+import { useGetAllUsers } from "../../api/controllers/userController";
+import { useGetAllTeams } from "../../api/controllers/teamController";
 import {
   useGetProjectById,
   useUpdateProject,
-} from "../api/controllers/projectsController";
+} from "../../api/controllers/projectsController";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import type { User } from "../api/types/userTypes";
-import type { Team } from "../api/types/teamTypes";
-import { ProjectStatus } from "../utils/types/ProjectStatus";
+import type { User } from "../../api/types/userTypes";
+import type { Team } from "../../api/types/teamTypes";
+import { ProjectStatus } from "../../utils/types/ProjectStatus";
 
 type ProjectDetailsEditProps = {
-  onSaved?: () => void;
+  onSaved: () => void;
 };
 
 export const ProjectDetailsEdit = ({ onSaved }: ProjectDetailsEditProps) => {
@@ -43,8 +44,7 @@ export const ProjectDetailsEdit = ({ onSaved }: ProjectDetailsEditProps) => {
   const [selectedAdmins, setSelectedAdmins] = useState<User[]>([]);
   const [selectedMembers, setSelectedMembers] = useState<User[]>([]);
   const [selectedTeams, setSelectedTeams] = useState<Team[]>([]);
-  const [isSaving, setIsSaving] = useState(false);
-  const { mutateAsync: mutateAsyncUpdate } = useUpdateProject(
+  const { mutateAsync: mutateAsyncUpdate, isPending } = useUpdateProject(
     project?.id || ""
   );
   const [projectStatus, setProjectStatus] = useState(project?.status);
@@ -88,22 +88,18 @@ export const ProjectDetailsEdit = ({ onSaved }: ProjectDetailsEditProps) => {
 
   const handleSave = async () => {
     if (!project) return;
-    setIsSaving(true);
-    try {
-      await mutateAsyncUpdate({
-        name: projectName,
-        description: projectDescription,
-        createdAt: project.createdAt,
-        updatedAt: new Date().toLocaleDateString(),
-        teamIds: selectedTeams.map((team) => team.id),
-        adminIds: selectedAdmins.map((admin) => admin.id),
-        memberIds: selectedMembers.map((member) => member.id),
-        status: projectStatus,
-      });
-      onSaved?.();
-    } finally {
-      setIsSaving(false);
-    }
+
+    await mutateAsyncUpdate({
+      name: projectName,
+      description: projectDescription,
+      createdAt: project.createdAt,
+      updatedAt: new Date().toLocaleDateString(),
+      teamIds: selectedTeams.map((team) => team.id),
+      adminIds: selectedAdmins.map((admin) => admin.id),
+      memberIds: selectedMembers.map((member) => member.id),
+      status: projectStatus,
+    });
+    onSaved?.();
   };
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -173,10 +169,8 @@ export const ProjectDetailsEdit = ({ onSaved }: ProjectDetailsEditProps) => {
         </Grid>
         <Grid size={4}>
           <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Status</InputLabel>
+            <InputLabel>Status</InputLabel>
             <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
               value={projectStatus}
               label="Status"
               onChange={handleChange}
@@ -200,9 +194,9 @@ export const ProjectDetailsEdit = ({ onSaved }: ProjectDetailsEditProps) => {
             <Button
               variant="contained"
               onClick={handleSave}
-              disabled={isSaving}
+              disabled={isPending}
             >
-              {isSaving ? "Saving..." : "Save Changes"}
+              {isPending ? "Saving..." : "Save Changes"}
             </Button>
           </Box>
         </Grid>

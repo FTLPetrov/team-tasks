@@ -1,8 +1,8 @@
 import { Box, CircularProgress, Typography } from "@mui/material";
 import { useGetAllProjects } from "../api/controllers/projectsController";
 import { useAuth } from "../utils/hooks/useAuth";
-import { ProjectCard } from "../components/ProjectCard";
-import { AddProjectButton } from "../components/common/AddProjectButton";
+import { ProjectCard } from "../components/projects/ProjectCard";
+import { AddProjectButton } from "../components/projects/AddProjectButton";
 
 export const ProjectsPage = () => {
   const { data = [], isLoading, isError, error } = useGetAllProjects();

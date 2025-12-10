@@ -1,11 +1,11 @@
 import { Box, Chip, Grid, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
-import { useGetProjectById } from "../api/controllers/projectsController";
-import { useGetAllUsers } from "../api/controllers/userController";
-import { useGetAllTeams } from "../api/controllers/teamController";
+import { useGetProjectById } from "../../api/controllers/projectsController";
+import { useGetAllUsers } from "../../api/controllers/userController";
+import { useGetAllTeams } from "../../api/controllers/teamController";
 
 export const ProjectDetailsView = () => {
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams();
   const { data: project } = useGetProjectById(id!);
   const { data: users = [] } = useGetAllUsers();
   const { data: teams = [] } = useGetAllTeams();
