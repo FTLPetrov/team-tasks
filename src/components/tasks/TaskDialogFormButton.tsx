@@ -94,7 +94,7 @@ export const TaskDialogFormButton = ({ task }: Props) => {
 
   const handleSubmit = () => {
     if (!taskTitle?.trim()) return;
-
+    
     if (task) {
       mutateAsyncUpdate({
         title: taskTitle.trim(),
@@ -114,6 +114,7 @@ export const TaskDialogFormButton = ({ task }: Props) => {
         assignedUserId: taskAssignedId,
         createdAt: new Date().toLocaleDateString(),
         updatedAt: new Date().toLocaleDateString(),
+        projectId: id as string,
       });
     }
 

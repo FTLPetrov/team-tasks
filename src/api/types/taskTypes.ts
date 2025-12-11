@@ -10,4 +10,5 @@ export interface Task {
   assignedUserId: string;
   createdAt: string;
   updatedAt: string;
+  projectId: string;
 }

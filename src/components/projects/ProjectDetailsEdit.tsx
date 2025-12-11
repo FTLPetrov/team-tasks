@@ -89,6 +89,10 @@ export const ProjectDetailsEdit = ({ onSaved }: ProjectDetailsEditProps) => {
   const handleSave = async () => {
     if (!project) return;
 
+    // if (!selectedAdmins) {
+    //   return;
+    // }
+
     await mutateAsyncUpdate({
       name: projectName,
       description: projectDescription,
@@ -141,7 +145,13 @@ export const ProjectDetailsEdit = ({ onSaved }: ProjectDetailsEditProps) => {
             getOptionLabel={(option) => option.displayName}
             isOptionEqualToValue={(option, value) => option.id === value.id}
             renderInput={(params) => (
-              <TextField {...params} variant="outlined" label="Admins" />
+              <TextField
+                {...params}
+                error={!selectedAdmins}
+                helperText={selectedAdmins == null}
+                variant="outlined"
+                label="Admins"
+              />
             )}
           />
           <Autocomplete
@@ -194,7 +204,7 @@ export const ProjectDetailsEdit = ({ onSaved }: ProjectDetailsEditProps) => {
             <Button
               variant="contained"
               onClick={handleSave}
-              disabled={isPending}
+              disabled={isPending || !selectedAdmins}
             >
               {isPending ? "Saving..." : "Save Changes"}
             </Button>
