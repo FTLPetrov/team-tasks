@@ -58,11 +58,7 @@ export const TaskTable = () => {
                 <TableCell align="center">{task.createdAt}</TableCell>
                 <TableCell align="center">{task.updatedAt}</TableCell>
                 <TableCell align="center">
-                  <Box
-                    display={"flex"}
-                    justifyContent={"space-between"}
-                    gap={1}
-                  >
+                  <Box display={"flex"} justifyContent={"flex-end"} gap={1}>
                     <TaskDeleteButton task={task} />
                     <TaskDialogFormButton task={task} />
                   </Box>

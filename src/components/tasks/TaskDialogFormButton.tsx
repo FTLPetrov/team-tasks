@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 import { useEffect, useState } from "react";
 import {
   useCreateTask,
@@ -67,11 +68,29 @@ export const TaskDialogFormButton = ({ task }: Props) => {
   const handleOpen = () => setIsDialogOpen(true);
   const handleClose = () => {
     setIsDialogOpen(false);
+    setTaskTitle("");
+    setTaskDescription("");
+    setTaskStatus(undefined);
+    setTaskPriority(undefined);
+    setTaskAssignedId("");
   };
 
   useEffect(() => {
     if (!isDialogOpen) return;
-  }, [isDialogOpen]);
+
+    setTaskTitle(task?.title);
+    setTaskDescription(task?.description);
+    setTaskStatus(task?.status);
+    setTaskPriority(task?.priority);
+    setTaskAssignedId(task?.assignedUserId);
+  }, [
+    isDialogOpen,
+    task?.assignedUserId,
+    task?.description,
+    task?.priority,
+    task?.status,
+    task?.title,
+  ]);
 
   const handleSubmit = () => {
     if (!taskTitle?.trim()) return;
