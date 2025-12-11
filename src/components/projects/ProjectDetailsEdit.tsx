@@ -49,6 +49,8 @@ export const ProjectDetailsEdit = ({ onSaved }: ProjectDetailsEditProps) => {
   );
   const [projectStatus, setProjectStatus] = useState(project?.status);
 
+  const [noAdmins, setNoAdmin] = useState(false);
+
   useEffect(() => {
     if (!project) return;
     setProjectName(project.name ?? "");
@@ -89,9 +91,9 @@ export const ProjectDetailsEdit = ({ onSaved }: ProjectDetailsEditProps) => {
   const handleSave = async () => {
     if (!project) return;
 
-    // if (!selectedAdmins) {
-    //   return;
-    // }
+    if (!selectedAdmins) {
+      return (setNoAdmin = true);
+    }
 
     await mutateAsyncUpdate({
       name: projectName,
@@ -147,8 +149,8 @@ export const ProjectDetailsEdit = ({ onSaved }: ProjectDetailsEditProps) => {
             renderInput={(params) => (
               <TextField
                 {...params}
-                error={!selectedAdmins}
-                helperText={selectedAdmins == null}
+                // error={selectedAdmins && selectedAdmins?.length == 0}
+                helperText={!selectedAdmins || "qwerqwe"}
                 variant="outlined"
                 label="Admins"
               />

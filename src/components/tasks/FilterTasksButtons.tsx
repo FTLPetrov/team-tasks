@@ -88,11 +88,12 @@ export const FilterTasksButtons = ({ onChange, filters }: Props) => {
         </TextField>
 
         <Autocomplete
+          multiple
           options={assignedUsers}
           sx={{ minWidth: 200 }}
           size="small"
           getOptionLabel={(option) => option.displayName}
-          value={assignedUsers.find((u) => u.id === filters.assignedId) ?? null}
+          value={assignedUsers ?? undefined}
           onChange={(e, newValue) =>
             handleChange("assignedId", newValue?.id ?? "")
           }
