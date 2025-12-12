@@ -8,6 +8,7 @@ import { LoginPage } from "./LoginPage";
 import { ProtectedRoute } from "../utils/hooks/withAuth";
 import { ProjectsPage } from "./ProjectsPage";
 import { ProjectsDetailsPage } from "./ProjectDetailsPage";
+import { ProfilePage } from "./ProfilePage";
 
 export const routes: RouteObject[] = [
   {
@@ -35,6 +36,10 @@ export const routes: RouteObject[] = [
       {
         path: "/projects/:id",
         element: <ProjectsDetailsPage />,
+      },
+      {
+        path: "/users/:id",
+        element: <ProfilePage />,
       },
     ],
   },
