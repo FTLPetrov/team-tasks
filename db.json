@@ -1,32 +1,25 @@
 {
   "teams": [
     {
-      "id": "5906",
+      "id": "1",
       "name": "Test",
-      "users": [
-        "1",
-        "2"
-      ],
+      "users": ["1", "2"],
       "createdAt": "12/5/2025",
       "updatedAt": "12/5/2025",
       "owner": "1"
     },
     {
-      "id": "8414",
+      "id": "2",
       "name": "Req",
-      "users": [
-        "1"
-      ],
+      "users": ["1"],
       "createdAt": "12/5/2025",
       "updatedAt": "12/5/2025",
       "owner": "1"
     },
     {
-      "id": "3dab",
-      "name": "Admin tean",
-      "users": [
-        "5a85"
-      ],
+      "id": "3",
+      "name": "Admin team",
+      "users": ["5a85"],
       "createdAt": "12/5/2025",
       "updatedAt": "12/5/2025",
       "owner": "8cf1"
@@ -34,82 +27,58 @@
     {
       "id": "97ab",
       "name": "Admin team2",
-      "users": [
-        "1"
-      ],
+      "users": ["1", "8cf1"],
       "createdAt": "12/5/2025",
-      "updatedAt": "12/5/2025",
+      "updatedAt": "12/10/2025",
       "owner": "8cf1"
     },
     {
-      "id": "1629",
-      "name": "qwerqewr",
-      "users": [
-        "1"
-      ],
-      "createdAt": "12/5/2025",
-      "updatedAt": "12/5/2025",
-      "owner": "1"
-    },
-    {
-      "id": "4f6c",
-      "name": "qwerqereqwr",
-      "users": [
-        "1"
-      ],
-      "createdAt": "12/5/2025",
-      "updatedAt": "12/5/2025",
-      "owner": "1"
-    },
-    {
-      "id": "4e2f",
-      "name": "qwerqewr",
-      "users": [
-        "3"
-      ],
-      "createdAt": "12/5/2025",
-      "updatedAt": "12/5/2025",
-      "owner": "1"
-    },
-    {
       "id": "c1d8",
-      "name": "qewrqwer",
-      "users": [
-        "2"
-      ],
-      "createdAt": "12/5/2025",
-      "updatedAt": "12/5/2025",
+      "name": "Frontend Guild",
+      "users": ["1", "3", "9b1a"],
+      "createdAt": "12/6/2025",
+      "updatedAt": "12/11/2025",
       "owner": "1"
     },
     {
       "id": "2459",
-      "name": "qewrqewr",
-      "users": [
-        "2"
-      ],
-      "createdAt": "12/5/2025",
-      "updatedAt": "12/5/2025",
-      "owner": "1"
+      "name": "Backend Squad",
+      "users": ["2", "7d2c", "8cf1"],
+      "createdAt": "12/6/2025",
+      "updatedAt": "12/12/2025",
+      "owner": "2"
     },
     {
       "id": "9977",
-      "name": "eeee",
-      "users": [
-        "2"
-      ],
-      "createdAt": "12/5/2025",
-      "updatedAt": "12/5/2025",
-      "owner": "1"
+      "name": "QA & Release",
+      "users": ["3", "6f9b"],
+      "createdAt": "12/7/2025",
+      "updatedAt": "12/12/2025",
+      "owner": "3"
     },
     {
       "id": "7548",
-      "name": "ewrqwerewqrrrrrr",
-      "users": [
-        "2"
-      ],
-      "createdAt": "12/5/2025",
-      "updatedAt": "12/5/2025",
-      "owner": "1"
+      "name": "Product & Design",
+      "users": ["4", "a2e4"],
+      "createdAt": "12/7/2025",
+      "updatedAt": "12/12/2025",
+      "owner": "4"
+    },
+    {
+      "id": "4e2f",
+      "name": "DevOps Cell",
+      "users": ["8cf1", "d0c3"],
+      "createdAt": "12/8/2025",
+      "updatedAt": "12/12/2025",
+      "owner": "8cf1"
+    },
+    {
+      "id": "4f6c",
+      "name": "Security Review",
+      "users": ["5a85", "d0c3"],
+      "createdAt": "12/9/2025",
+      "updatedAt": "12/12/2025",
+      "owner": "5a85"
     }
   ],
   "users": [
@@ -121,7 +90,7 @@
       "firstName": "Alice",
       "lastName": "Johnson",
       "createdAt": "2025-01-10T10:00:00Z",
-      "updatedAt": "2025-01-10T10:00:00Z"
+      "updatedAt": "2025-12-10T09:12:00Z"
     },
     {
       "id": "2",
@@ -131,27 +100,27 @@
       "firstName": "Bob",
       "lastName": "Lee",
       "createdAt": "2025-01-10T10:00:00Z",
-      "updatedAt": "2025-01-10T10:00:00Z"
+      "updatedAt": "2025-12-11T11:20:00Z"
     },
     {
       "id": "3",
-      "displayName": "Charlie",
+      "displayName": "Charlie Chen",
       "email": "charlie@example.com",
       "secret": "charlie123456",
       "firstName": "Charlie",
       "lastName": "Chen",
       "createdAt": "2025-01-10T10:00:00Z",
-      "updatedAt": "2025-01-10T10:00:00Z"
+      "updatedAt": "2025-12-12T08:05:00Z"
     },
     {
       "id": "4",
-      "displayName": "Qwerqwerqwer QWE",
-      "email": "charlie@example.com",
-      "secret": "charlie123456",
-      "firstName": "Charlie",
-      "lastName": "Qqwer",
-      "createdAt": "2025-01-10T10:00:00Z",
-      "updatedAt": "2025-01-10T10:00:00Z"
+      "displayName": "Diana Qwer",
+      "email": "diana@example.com",
+      "secret": "diana123456",
+      "firstName": "Diana",
+      "lastName": "Qwer",
+      "createdAt": "2025-02-02T09:00:00Z",
+      "updatedAt": "2025-12-11T17:45:00Z"
     },
     {
       "id": "5a85",
@@ -160,8 +129,8 @@
       "displayName": "Qwer Qwer",
       "email": "admin@gmail.com",
       "secret": "qwerqwer1",
-      "createdAt": "12/3/2025",
-      "updatedAt": "12/3/2025"
+      "createdAt": "2025-12-03T10:00:00Z",
+      "updatedAt": "2025-12-12T10:00:00Z"
     },
     {
       "id": "8cf1",
@@ -170,92 +139,751 @@
       "displayName": "Admin Admin",
       "email": "admin@admin.com",
       "secret": "admin1234",
-      "createdAt": "12/5/2025",
-      "updatedAt": "12/5/2025"
+      "createdAt": "2025-12-05T10:00:00Z",
+      "updatedAt": "2025-12-12T10:05:00Z"
+    },
+    {
+      "id": "6f9b",
+      "displayName": "Elena Petrova",
+      "email": "elena.petrova@example.com",
+      "secret": "elenaPass123",
+      "firstName": "Elena",
+      "lastName": "Petrova",
+      "createdAt": "2025-03-14T12:00:00Z",
+      "updatedAt": "2025-12-12T09:10:00Z"
+    },
+    {
+      "id": "7d2c",
+      "displayName": "Frank Novak",
+      "email": "frank.novak@example.com",
+      "secret": "frankPass123",
+      "firstName": "Frank",
+      "lastName": "Novak",
+      "createdAt": "2025-04-01T08:30:00Z",
+      "updatedAt": "2025-12-11T14:22:00Z"
+    },
+    {
+      "id": "9b1a",
+      "displayName": "Grace Kim",
+      "email": "grace.kim@example.com",
+      "secret": "gracePass123",
+      "firstName": "Grace",
+      "lastName": "Kim",
+      "createdAt": "2025-05-20T16:15:00Z",
+      "updatedAt": "2025-12-12T07:50:00Z"
+    },
+    {
+      "id": "a2e4",
+      "displayName": "Hassan Ali",
+      "email": "hassan.ali@example.com",
+      "secret": "hassanPass123",
+      "firstName": "Hassan",
+      "lastName": "Ali",
+      "createdAt": "2025-06-11T13:40:00Z",
+      "updatedAt": "2025-12-12T08:40:00Z"
     }
   ],
   "projects": [
     {
       "id": "1",
       "name": "Project Atlas",
-      "description": "Internal analytics platform",
-      "status": "active",
-      "adminIds": [
-        1
-      ],
-      "memberIds": [
-        2,
-        3
-      ],
-      "teamIds": [],
+      "description": "Internal analytics platform for product metrics and stakeholder dashboards.",
+      "createdBy": "1",
       "createdAt": "2025-01-10T10:00:00Z",
-      "updatedAt": "2025-01-10T10:00:00Z"
+      "updatedAt": "2025-12-12T09:30:00Z",
+      "teamIds": ["c1d8", "2459"],
+      "adminIds": ["1", "8cf1"],
+      "memberIds": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5a85",
+        "8cf1",
+        "6f9b",
+        "7d2c",
+        "9b1a",
+        "a2e4"
+      ],
+      "status": "ACTIVE"
     },
     {
-      "id": "2",
-      "name": "Mobile Banking App",
-      "description": "Banking app MVP",
-      "status": "paused",
-      "adminIds": [
-        2
-      ],
-      "memberIds": [
-        1,
-        3
-      ],
-      "teamIds": [
-        1
-      ],
-      "createdAt": "2025-01-10T10:00:00Z",
-      "updatedAt": "2025-01-10T10:00:00Z"
+      "id": "p2",
+      "name": "Project Orion",
+      "description": "Customer-facing portal redesign with new onboarding flow and account settings.",
+      "createdBy": "4",
+      "createdAt": "2025-06-01T09:00:00Z",
+      "updatedAt": "2025-12-11T16:10:00Z",
+      "teamIds": ["c1d8", "7548"],
+      "adminIds": ["4"],
+      "memberIds": ["1", "4", "9b1a", "a2e4"],
+      "status": "ACTIVE"
     },
     {
-      "id": "3",
-      "name": "Web Banking App",
-      "description": "Banking app MVP for WEB",
-      "status": "completed",
-      "adminIds": [
-        2
-      ],
-      "memberIds": [],
-      "teamIds": [],
-      "createdAt": "2025-01-10T10:00:00Z",
-      "updatedAt": "2025-01-10T10:00:00Z"
+      "id": "p3",
+      "name": "Project Nimbus",
+      "description": "Infrastructure hardening, CI/CD improvements, and observability rollout.",
+      "createdBy": "8cf1",
+      "createdAt": "2025-07-10T11:00:00Z",
+      "updatedAt": "2025-12-12T08:20:00Z",
+      "teamIds": ["4e2f", "4f6c"],
+      "adminIds": ["8cf1", "5a85"],
+      "memberIds": ["2", "7d2c", "8cf1", "5a85"],
+      "status": "ACTIVE"
+    },
+    {
+      "id": "p4",
+      "name": "Project Helix",
+      "description": "API consolidation and migration to versioned endpoints with better auth.",
+      "createdBy": "2",
+      "createdAt": "2025-08-03T10:30:00Z",
+      "updatedAt": "2025-12-10T15:00:00Z",
+      "teamIds": ["2459"],
+      "adminIds": ["2"],
+      "memberIds": ["2", "7d2c", "3"],
+      "status": "ACTIVE"
+    },
+    {
+      "id": "p5",
+      "name": "Project Redwood",
+      "description": "QA automation suite expansion and release process standardization.",
+      "createdBy": "3",
+      "createdAt": "2025-09-01T08:00:00Z",
+      "updatedAt": "2025-12-12T09:00:00Z",
+      "teamIds": ["9977"],
+      "adminIds": ["3"],
+      "memberIds": ["3", "6f9b"],
+      "status": "ACTIVE"
+    },
+    {
+      "id": "p6",
+      "name": "Project Aurora",
+      "description": "New billing integration and invoice PDF rendering improvements.",
+      "createdBy": "1",
+      "createdAt": "2025-09-15T10:00:00Z",
+      "updatedAt": "2025-12-09T12:00:00Z",
+      "teamIds": ["2459", "c1d8"],
+      "adminIds": ["1"],
+      "memberIds": ["1", "2", "9b1a"],
+      "status": "ACTIVE"
+    },
+    {
+      "id": "p7",
+      "name": "Project Keystone",
+      "description": "Permissions model review and role-based access control cleanup.",
+      "createdBy": "5a85",
+      "createdAt": "2025-10-01T09:00:00Z",
+      "updatedAt": "2025-12-12T07:15:00Z",
+      "teamIds": ["4f6c"],
+      "adminIds": ["5a85"],
+      "memberIds": ["5a85", "8cf1"],
+      "status": "ACTIVE"
+    },
+    {
+      "id": "p8",
+      "name": "Project Delta",
+      "description": "Sprint planning board and task workflow improvements for internal teams.",
+      "createdBy": "4",
+      "createdAt": "2025-10-20T14:00:00Z",
+      "updatedAt": "2025-12-11T10:00:00Z",
+      "teamIds": ["7548", "c1d8"],
+      "adminIds": ["4"],
+      "memberIds": ["4", "a2e4", "9b1a"],
+      "status": "ACTIVE"
+    },
+    {
+      "id": "p9",
+      "name": "Project Summit",
+      "description": "Executive reporting pack and monthly KPI export automation.",
+      "createdBy": "1",
+      "createdAt": "2025-11-05T09:00:00Z",
+      "updatedAt": "2025-12-12T06:55:00Z",
+      "teamIds": ["1", "2"],
+      "adminIds": ["1"],
+      "memberIds": ["1", "2", "3"],
+      "status": "ACTIVE"
+    },
+    {
+      "id": "p10",
+      "name": "Project Ember",
+      "description": "Bug bash, tech debt burn-down, and performance tuning across modules.",
+      "createdBy": "2",
+      "createdAt": "2025-11-20T10:00:00Z",
+      "updatedAt": "2025-12-12T09:40:00Z",
+      "teamIds": ["2459", "9977"],
+      "adminIds": ["2", "3"],
+      "memberIds": ["2", "3", "6f9b", "7d2c"],
+      "status": "ACTIVE"
     }
   ],
   "tasks": [
     {
-      "id": "1",
-      "title": "Create initial wireframes",
-      "description": "Basic screens for dashboard",
-      "status": "todo",
-      "priority": "low",
-      "projectId": 1,
-      "assignedUserId": 2,
-      "createdAt": "2025-01-10T10:00:00Z",
-      "updatedAt": "2025-01-10T10:00:00Z"
+      "id": "t001",
+      "title": "Atlas: Define KPIs",
+      "description": "Confirm KPI definitions and naming for the analytics dashboard.",
+      "status": "Todo",
+      "priority": "High",
+      "assignedUserId": "1",
+      "createdAt": "2025-12-01T09:00:00Z",
+      "updatedAt": "2025-12-01T09:00:00Z",
+      "projectId": "1"
     },
     {
-      "id": "2",
-      "title": "Implement login page",
-      "description": "Basic email/password form",
-      "status": "in-progress",
-      "priority": "high",
-      "projectId": 1,
-      "assignedUserId": 1,
-      "createdAt": "2025-01-10T10:00:00Z",
-      "updatedAt": "2025-01-10T10:00:00Z"
+      "id": "t002",
+      "title": "Atlas: Dashboard layout",
+      "description": "Create baseline dashboard layout with placeholders.",
+      "status": "In-progress",
+      "priority": "Medium",
+      "assignedUserId": "1",
+      "createdAt": "2025-12-02T10:00:00Z",
+      "updatedAt": "2025-12-12T07:00:00Z",
+      "projectId": "1"
+    },
+
+    {
+      "id": "t003",
+      "title": "Atlas: API integration",
+      "description": "Connect dashboard to metrics API and map response fields.",
+      "status": "In-progress",
+      "priority": "High",
+      "assignedUserId": "2",
+      "createdAt": "2025-12-02T11:00:00Z",
+      "updatedAt": "2025-12-12T08:10:00Z",
+      "projectId": "1"
     },
     {
-      "id": "3",
-      "title": "API Integration",
-      "description": "Connect axios to json-server",
-      "status": "todo",
-      "priority": "medium",
-      "projectId": 2,
-      "assignedUserId": 3,
-      "createdAt": "2025-01-10T10:00:00Z",
-      "updatedAt": "2025-01-10T10:00:00Z"
+      "id": "t004",
+      "title": "Atlas: Table pagination",
+      "description": "Implement pagination and ensure correct page count after filtering.",
+      "status": "Todo",
+      "priority": "Medium",
+      "assignedUserId": "2",
+      "createdAt": "2025-12-03T09:00:00Z",
+      "updatedAt": "2025-12-03T09:00:00Z",
+      "projectId": "1"
+    },
+
+    {
+      "id": "t005",
+      "title": "Atlas: Filters UI",
+      "description": "Build filters row using MUI inputs and pass state to TaskTable.",
+      "status": "In-progress",
+      "priority": "High",
+      "assignedUserId": "3",
+      "createdAt": "2025-12-03T10:00:00Z",
+      "updatedAt": "2025-12-12T09:10:00Z",
+      "projectId": "1"
+    },
+    {
+      "id": "t006",
+      "title": "Atlas: Fix assigned filter",
+      "description": "Ensure assigned user filter supports multi-select and includes().",
+      "status": "Todo",
+      "priority": "High",
+      "assignedUserId": "3",
+      "createdAt": "2025-12-04T12:00:00Z",
+      "updatedAt": "2025-12-04T12:00:00Z",
+      "projectId": "1"
+    },
+
+    {
+      "id": "t007",
+      "title": "Atlas: UX polish",
+      "description": "Adjust spacing, alignment and empty-state messaging in tasks table.",
+      "status": "Todo",
+      "priority": "Low",
+      "assignedUserId": "4",
+      "createdAt": "2025-12-04T09:30:00Z",
+      "updatedAt": "2025-12-04T09:30:00Z",
+      "projectId": "1"
+    },
+    {
+      "id": "t008",
+      "title": "Atlas: Accessibility check",
+      "description": "Verify keyboard navigation and aria labels for filters.",
+      "status": "Todo",
+      "priority": "Medium",
+      "assignedUserId": "4",
+      "createdAt": "2025-12-05T10:00:00Z",
+      "updatedAt": "2025-12-05T10:00:00Z",
+      "projectId": "1"
+    },
+
+    {
+      "id": "t009",
+      "title": "Atlas: Security review",
+      "description": "Review task endpoints and ensure authorization checks exist.",
+      "status": "In-progress",
+      "priority": "High",
+      "assignedUserId": "5a85",
+      "createdAt": "2025-12-05T08:00:00Z",
+      "updatedAt": "2025-12-12T06:45:00Z",
+      "projectId": "1"
+    },
+    {
+      "id": "t010",
+      "title": "Atlas: Audit logging",
+      "description": "Add audit log entries for create/update/delete actions.",
+      "status": "Todo",
+      "priority": "Medium",
+      "assignedUserId": "5a85",
+      "createdAt": "2025-12-06T11:00:00Z",
+      "updatedAt": "2025-12-06T11:00:00Z",
+      "projectId": "1"
+    },
+
+    {
+      "id": "t011",
+      "title": "Atlas: CI stability",
+      "description": "Stabilize CI checks and reduce flaky test failures.",
+      "status": "In-progress",
+      "priority": "High",
+      "assignedUserId": "8cf1",
+      "createdAt": "2025-12-01T08:00:00Z",
+      "updatedAt": "2025-12-12T06:30:00Z",
+      "projectId": "1"
+    },
+    {
+      "id": "t012",
+      "title": "Atlas: Observability",
+      "description": "Add structured logs and request correlation IDs.",
+      "status": "Todo",
+      "priority": "High",
+      "assignedUserId": "8cf1",
+      "createdAt": "2025-12-06T09:00:00Z",
+      "updatedAt": "2025-12-06T09:00:00Z",
+      "projectId": "1"
+    },
+
+    {
+      "id": "t013",
+      "title": "Atlas: QA smoke suite",
+      "description": "Add daily smoke tests for core analytics flows.",
+      "status": "In-progress",
+      "priority": "High",
+      "assignedUserId": "6f9b",
+      "createdAt": "2025-12-05T08:10:00Z",
+      "updatedAt": "2025-12-12T07:25:00Z",
+      "projectId": "1"
+    },
+    {
+      "id": "t014",
+      "title": "Atlas: Release checklist",
+      "description": "Create release checklist and enforce pre-release validation steps.",
+      "status": "Todo",
+      "priority": "Medium",
+      "assignedUserId": "6f9b",
+      "createdAt": "2025-12-06T10:00:00Z",
+      "updatedAt": "2025-12-06T10:00:00Z",
+      "projectId": "1"
+    },
+
+    {
+      "id": "t015",
+      "title": "Atlas: Backend indexing",
+      "description": "Add indexes for frequent task queries and filter endpoints.",
+      "status": "Todo",
+      "priority": "High",
+      "assignedUserId": "7d2c",
+      "createdAt": "2025-12-07T10:00:00Z",
+      "updatedAt": "2025-12-07T10:00:00Z",
+      "projectId": "1"
+    },
+    {
+      "id": "t016",
+      "title": "Atlas: Optimize fetch",
+      "description": "Reduce unnecessary refetching and memoize computed filtering values.",
+      "status": "In-progress",
+      "priority": "Medium",
+      "assignedUserId": "7d2c",
+      "createdAt": "2025-12-08T11:00:00Z",
+      "updatedAt": "2025-12-12T08:55:00Z",
+      "projectId": "1"
+    },
+
+    {
+      "id": "t017",
+      "title": "Atlas: UI skeletons",
+      "description": "Add skeleton loaders while users and tasks are loading.",
+      "status": "Todo",
+      "priority": "Low",
+      "assignedUserId": "9b1a",
+      "createdAt": "2025-12-08T12:00:00Z",
+      "updatedAt": "2025-12-08T12:00:00Z",
+      "projectId": "1"
+    },
+    {
+      "id": "t018",
+      "title": "Atlas: Empty state copy",
+      "description": "Add a helpful empty state when filters return no tasks.",
+      "status": "Completed",
+      "priority": "Low",
+      "assignedUserId": "9b1a",
+      "createdAt": "2025-12-09T09:00:00Z",
+      "updatedAt": "2025-12-10T10:00:00Z",
+      "projectId": "1"
+    },
+
+    {
+      "id": "t019",
+      "title": "Atlas: Copy review",
+      "description": "Review dashboard labels and ensure consistent naming.",
+      "status": "Todo",
+      "priority": "Low",
+      "assignedUserId": "a2e4",
+      "createdAt": "2025-12-09T11:00:00Z",
+      "updatedAt": "2025-12-09T11:00:00Z",
+      "projectId": "1"
+    },
+    {
+      "id": "t020",
+      "title": "Atlas: Visual polish",
+      "description": "Align typography and spacing with the design system.",
+      "status": "In-progress",
+      "priority": "Medium",
+      "assignedUserId": "a2e4",
+      "createdAt": "2025-12-10T10:00:00Z",
+      "updatedAt": "2025-12-12T08:15:00Z",
+      "projectId": "1"
+    },
+
+    {
+      "id": "t021",
+      "title": "Orion: Account settings page",
+      "description": "Add profile update UI with validation.",
+      "status": "In-progress",
+      "priority": "High",
+      "assignedUserId": "9b1a",
+      "createdAt": "2025-12-03T09:00:00Z",
+      "updatedAt": "2025-12-12T08:30:00Z",
+      "projectId": "p2"
+    },
+    {
+      "id": "t022",
+      "title": "Orion: Accessibility pass",
+      "description": "Ensure aria attributes and focus management for forms.",
+      "status": "Todo",
+      "priority": "Medium",
+      "assignedUserId": "4",
+      "createdAt": "2025-12-04T11:00:00Z",
+      "updatedAt": "2025-12-04T11:00:00Z",
+      "projectId": "p2"
+    },
+    {
+      "id": "t023",
+      "title": "Orion: Improve empty states",
+      "description": "Add empty state messages and CTA buttons.",
+      "status": "Todo",
+      "priority": "Low",
+      "assignedUserId": "a2e4",
+      "createdAt": "2025-12-06T09:30:00Z",
+      "updatedAt": "2025-12-06T09:30:00Z",
+      "projectId": "p2"
+    },
+    {
+      "id": "t024",
+      "title": "Orion: Fix modal focus trap",
+      "description": "Ensure dialogs trap focus and restore on close.",
+      "status": "In-progress",
+      "priority": "Medium",
+      "assignedUserId": "9b1a",
+      "createdAt": "2025-12-12T07:20:00Z",
+      "updatedAt": "2025-12-12T08:15:00Z",
+      "projectId": "p2"
+    },
+
+    {
+      "id": "t025",
+      "title": "Nimbus: Tune CI pipeline",
+      "description": "Cache dependencies and reduce build times.",
+      "status": "In-progress",
+      "priority": "High",
+      "assignedUserId": "8cf1",
+      "createdAt": "2025-12-01T08:00:00Z",
+      "updatedAt": "2025-12-12T06:30:00Z",
+      "projectId": "p3"
+    },
+    {
+      "id": "t026",
+      "title": "Nimbus: Add structured logging",
+      "description": "Introduce JSON logs with correlation IDs.",
+      "status": "Todo",
+      "priority": "Medium",
+      "assignedUserId": "7d2c",
+      "createdAt": "2025-12-02T10:00:00Z",
+      "updatedAt": "2025-12-02T10:00:00Z",
+      "projectId": "p3"
+    },
+    {
+      "id": "t027",
+      "title": "Nimbus: Add alerting rules",
+      "description": "Configure alerts for error rate and latency thresholds.",
+      "status": "Todo",
+      "priority": "High",
+      "assignedUserId": "8cf1",
+      "createdAt": "2025-12-12T07:40:00Z",
+      "updatedAt": "2025-12-12T07:40:00Z",
+      "projectId": "p3"
+    },
+    {
+      "id": "t028",
+      "title": "Nimbus: Retry strategy",
+      "description": "Add exponential backoff for transient failures.",
+      "status": "Todo",
+      "priority": "Medium",
+      "assignedUserId": "7d2c",
+      "createdAt": "2025-12-11T10:00:00Z",
+      "updatedAt": "2025-12-11T10:00:00Z",
+      "projectId": "p3"
+    },
+
+    {
+      "id": "t029",
+      "title": "Helix: Endpoint versioning plan",
+      "description": "Draft v1->v2 migration plan and deprecation policy.",
+      "status": "Todo",
+      "priority": "High",
+      "assignedUserId": "2",
+      "createdAt": "2025-12-05T09:00:00Z",
+      "updatedAt": "2025-12-05T09:00:00Z",
+      "projectId": "p4"
+    },
+    {
+      "id": "t030",
+      "title": "Helix: Auth middleware update",
+      "description": "Update token validation and error messaging.",
+      "status": "In-progress",
+      "priority": "High",
+      "assignedUserId": "7d2c",
+      "createdAt": "2025-12-06T10:00:00Z",
+      "updatedAt": "2025-12-12T08:10:00Z",
+      "projectId": "p4"
+    },
+    {
+      "id": "t031",
+      "title": "Helix: Integration tests",
+      "description": "Write test cases for common request flows and failures.",
+      "status": "Todo",
+      "priority": "Medium",
+      "assignedUserId": "3",
+      "createdAt": "2025-12-07T11:00:00Z",
+      "updatedAt": "2025-12-07T11:00:00Z",
+      "projectId": "p4"
+    },
+    {
+      "id": "t032",
+      "title": "Helix: API docs update",
+      "description": "Update API docs to include v2 examples and auth notes.",
+      "status": "Todo",
+      "priority": "Low",
+      "assignedUserId": "2",
+      "createdAt": "2025-12-08T10:00:00Z",
+      "updatedAt": "2025-12-08T10:00:00Z",
+      "projectId": "p4"
+    },
+
+    {
+      "id": "t033",
+      "title": "Redwood: Smoke test automation",
+      "description": "Add daily smoke tests for top user journeys.",
+      "status": "In-progress",
+      "priority": "High",
+      "assignedUserId": "6f9b",
+      "createdAt": "2025-12-05T08:00:00Z",
+      "updatedAt": "2025-12-12T07:25:00Z",
+      "projectId": "p5"
+    },
+    {
+      "id": "t034",
+      "title": "Redwood: Release checklist template",
+      "description": "Define repeatable checklist for releases.",
+      "status": "Todo",
+      "priority": "Medium",
+      "assignedUserId": "3",
+      "createdAt": "2025-12-06T09:00:00Z",
+      "updatedAt": "2025-12-06T09:00:00Z",
+      "projectId": "p5"
+    },
+    {
+      "id": "t035",
+      "title": "Redwood: Fix flaky e2e tests",
+      "description": "Stabilize tests using consistent selectors and waits.",
+      "status": "In-progress",
+      "priority": "High",
+      "assignedUserId": "6f9b",
+      "createdAt": "2025-12-11T08:00:00Z",
+      "updatedAt": "2025-12-12T07:40:00Z",
+      "projectId": "p5"
+    },
+    {
+      "id": "t036",
+      "title": "Redwood: Release notes generator",
+      "description": "Generate draft release notes from merged PR titles.",
+      "status": "Todo",
+      "priority": "Low",
+      "assignedUserId": "3",
+      "createdAt": "2025-12-12T08:10:00Z",
+      "updatedAt": "2025-12-12T08:10:00Z",
+      "projectId": "p5"
+    },
+
+    {
+      "id": "t037",
+      "title": "Aurora: Invoice PDF bug",
+      "description": "Fix layout for long invoice line items.",
+      "status": "In-progress",
+      "priority": "High",
+      "assignedUserId": "1",
+      "createdAt": "2025-12-07T09:00:00Z",
+      "updatedAt": "2025-12-11T18:00:00Z",
+      "projectId": "p6"
+    },
+    {
+      "id": "t038",
+      "title": "Aurora: Webhook handler",
+      "description": "Handle payment succeeded/failed events.",
+      "status": "Todo",
+      "priority": "High",
+      "assignedUserId": "2",
+      "createdAt": "2025-12-08T10:00:00Z",
+      "updatedAt": "2025-12-08T10:00:00Z",
+      "projectId": "p6"
+    },
+    {
+      "id": "t039",
+      "title": "Aurora: Billing page polish",
+      "description": "Align spacing and button states with design system.",
+      "status": "Todo",
+      "priority": "Low",
+      "assignedUserId": "9b1a",
+      "createdAt": "2025-12-08T14:00:00Z",
+      "updatedAt": "2025-12-10T12:00:00Z",
+      "projectId": "p6"
+    },
+    {
+      "id": "t040",
+      "title": "Aurora: Invoice email template",
+      "description": "Update invoice email copy and branding.",
+      "status": "Completed",
+      "priority": "Low",
+      "assignedUserId": "a2e4",
+      "createdAt": "2025-12-09T10:00:00Z",
+      "updatedAt": "2025-12-10T09:00:00Z",
+      "projectId": "p6"
+    },
+
+    {
+      "id": "t041",
+      "title": "Keystone: RBAC role matrix",
+      "description": "Audit roles and permissions for admin/member/viewer.",
+      "status": "In-progress",
+      "priority": "High",
+      "assignedUserId": "5a85",
+      "createdAt": "2025-12-04T08:00:00Z",
+      "updatedAt": "2025-12-12T06:45:00Z",
+      "projectId": "p7"
+    },
+    {
+      "id": "t042",
+      "title": "Keystone: Permission tests",
+      "description": "Add regression tests for restricted actions.",
+      "status": "Todo",
+      "priority": "Medium",
+      "assignedUserId": "8cf1",
+      "createdAt": "2025-12-06T10:00:00Z",
+      "updatedAt": "2025-12-06T10:00:00Z",
+      "projectId": "p7"
+    },
+    {
+      "id": "t043",
+      "title": "Keystone: Incident response doc",
+      "description": "Write incident triage runbook and mitigation steps.",
+      "status": "Todo",
+      "priority": "Medium",
+      "assignedUserId": "5a85",
+      "createdAt": "2025-12-12T07:45:00Z",
+      "updatedAt": "2025-12-12T07:45:00Z",
+      "projectId": "p7"
+    },
+    {
+      "id": "t044",
+      "title": "Keystone: Permission UI labels",
+      "description": "Update copy to reflect role-based permission changes.",
+      "status": "Todo",
+      "priority": "Low",
+      "assignedUserId": "a2e4",
+      "createdAt": "2025-12-11T12:00:00Z",
+      "updatedAt": "2025-12-11T12:00:00Z",
+      "projectId": "p7"
+    },
+
+    {
+      "id": "t045",
+      "title": "Delta: Board column reorder",
+      "description": "Allow drag-and-drop reorder of columns.",
+      "status": "Todo",
+      "priority": "Medium",
+      "assignedUserId": "4",
+      "createdAt": "2025-12-03T11:00:00Z",
+      "updatedAt": "2025-12-03T11:00:00Z",
+      "projectId": "p8"
+    },
+    {
+      "id": "t046",
+      "title": "Delta: Task detail drawer",
+      "description": "Open task details in a side drawer with edit actions.",
+      "status": "In-progress",
+      "priority": "High",
+      "assignedUserId": "9b1a",
+      "createdAt": "2025-12-05T12:00:00Z",
+      "updatedAt": "2025-12-12T08:00:00Z",
+      "projectId": "p8"
+    },
+    {
+      "id": "t047",
+      "title": "Delta: Add tags support",
+      "description": "Extend task model with tags and filter by tag.",
+      "status": "Todo",
+      "priority": "Low",
+      "assignedUserId": "3",
+      "createdAt": "2025-12-11T16:00:00Z",
+      "updatedAt": "2025-12-11T16:00:00Z",
+      "projectId": "p8"
+    },
+
+    {
+      "id": "t048",
+      "title": "Summit: KPI export CSV",
+      "description": "Create exporter for monthly KPI report in CSV format.",
+      "status": "In-progress",
+      "priority": "High",
+      "assignedUserId": "1",
+      "createdAt": "2025-12-07T08:00:00Z",
+      "updatedAt": "2025-12-12T07:10:00Z",
+      "projectId": "p9"
+    },
+    {
+      "id": "t049",
+      "title": "Summit: Executive summary template",
+      "description": "Draft template for executive summary highlights.",
+      "status": "Todo",
+      "priority": "Medium",
+      "assignedUserId": "2",
+      "createdAt": "2025-12-08T10:00:00Z",
+      "updatedAt": "2025-12-08T10:00:00Z",
+      "projectId": "p9"
+    },
+
+    {
+      "id": "t050",
+      "title": "Ember: Performance profiling",
+      "description": "Identify slow endpoints and UI renders using profiling tools.",
+      "status": "In-progress",
+      "priority": "High",
+      "assignedUserId": "7d2c",
+      "createdAt": "2025-12-09T09:00:00Z",
+      "updatedAt": "2025-12-12T08:55:00Z",
+      "projectId": "p10"
     }
   ]
 }

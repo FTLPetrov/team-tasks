@@ -48,7 +48,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
         </Typography>
         <Button
           onClick={() => navigate(`/projects/${project.id}`)}
-          variant="outlined"
+          variant="contained"
           size="small"
           sx={{ mt: "auto", alignSelf: "flex-start" }}
         >

@@ -13,11 +13,27 @@ import { ProjectDetailsEdit } from "../components/projects/ProjectDetailsEdit";
 import EditIcon from "@mui/icons-material/Edit";
 import CloseIcon from "@mui/icons-material/Close";
 import { DeleteProjectButton } from "../components/projects/DeleteProjectButton";
+import { TaskTable } from "../components/tasks/TaskTable";
+import { TaskDialogFormButton } from "../components/tasks/TaskDialogFormButton";
+import {
+  FilterTasksButtons,
+} from "../components/tasks/FilterTasksButtons";
+import type { TaskStatus } from "../utils/types/TaskStatus";
+import type { TaskPriority } from "../utils/types/TaskPriority";
+import type { Filters } from "../utils/types/Filters";
 
 export const ProjectsDetailsPage = () => {
   const { id } = useParams();
   const { data, isLoading, isError, error } = useGetProjectById(id!);
   const [isEditing, setIsEditing] = useState(false);
+
+  const [filters, setFilters] = useState<Filters>({
+    title: "",
+    description: "",
+    status: "" as TaskStatus,
+    priority: "" as TaskPriority,
+    assignedIds: [],
+  });
 
   if (isLoading) {
     return (
@@ -87,6 +103,13 @@ export const ProjectsDetailsPage = () => {
           <ProjectDetailsView />
         )}
       </Paper>
+      <Box sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
+        <TaskDialogFormButton />
+        <FilterTasksButtons filters={filters} onChange={setFilters} />
+      </Box>
+      <Box sx={{ mt: 3, mb: 6 }}>
+        <TaskTable filters={filters} />
+      </Box>
     </Box>
   );
 };

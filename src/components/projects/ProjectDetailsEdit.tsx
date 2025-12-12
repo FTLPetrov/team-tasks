@@ -49,6 +49,8 @@ export const ProjectDetailsEdit = ({ onSaved }: ProjectDetailsEditProps) => {
   );
   const [projectStatus, setProjectStatus] = useState(project?.status);
 
+  const [adminsTouched, setAdminsTouched] = useState(false);
+
   useEffect(() => {
     if (!project) return;
     setProjectName(project.name ?? "");
@@ -88,6 +90,12 @@ export const ProjectDetailsEdit = ({ onSaved }: ProjectDetailsEditProps) => {
 
   const handleSave = async () => {
     if (!project) return;
+
+    setAdminsTouched(true);
+
+    if (selectedAdmins.length === 0) {
+      return;
+    }
 
     await mutateAsyncUpdate({
       name: projectName,
@@ -141,7 +149,17 @@ export const ProjectDetailsEdit = ({ onSaved }: ProjectDetailsEditProps) => {
             getOptionLabel={(option) => option.displayName}
             isOptionEqualToValue={(option, value) => option.id === value.id}
             renderInput={(params) => (
-              <TextField {...params} variant="outlined" label="Admins" />
+              <TextField
+                {...params}
+                error={adminsTouched && selectedAdmins.length === 0}
+                helperText={
+                  adminsTouched && selectedAdmins.length === 0
+                    ? "Select at least one admin."
+                    : ""
+                }
+                variant="outlined"
+                label="Admins"
+              />
             )}
           />
           <Autocomplete
@@ -194,7 +212,7 @@ export const ProjectDetailsEdit = ({ onSaved }: ProjectDetailsEditProps) => {
             <Button
               variant="contained"
               onClick={handleSave}
-              disabled={isPending}
+              disabled={isPending || !selectedAdmins}
             >
               {isPending ? "Saving..." : "Save Changes"}
             </Button>
