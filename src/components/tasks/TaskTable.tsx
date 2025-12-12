@@ -65,10 +65,8 @@ export const TaskTable = ({ filters }: Props) => {
     });
   }, [rows, filters]);
 
-  // total pages depends on filteredRows + rowsPerPage
   const pageCount = Math.max(1, Math.ceil(filteredRows.length / rowsPerPage));
 
-  // reset to first page when filters OR rowsPerPage changes
   useEffect(() => {
     setPage(1);
   }, [filters, rowsPerPage]);
@@ -80,7 +78,7 @@ export const TaskTable = ({ filters }: Props) => {
   );
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} sx={{maxHeight: 500, overflowY:"auto"}}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
