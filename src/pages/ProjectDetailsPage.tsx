@@ -17,10 +17,10 @@ import { TaskTable } from "../components/tasks/TaskTable";
 import { TaskDialogFormButton } from "../components/tasks/TaskDialogFormButton";
 import {
   FilterTasksButtons,
-  type Filters,
 } from "../components/tasks/FilterTasksButtons";
 import type { TaskStatus } from "../utils/types/TaskStatus";
 import type { TaskPriority } from "../utils/types/TaskPriority";
+import type { Filters } from "../utils/types/Filters";
 
 export const ProjectsDetailsPage = () => {
   const { id } = useParams();
@@ -32,7 +32,7 @@ export const ProjectsDetailsPage = () => {
     description: "",
     status: "" as TaskStatus,
     priority: "" as TaskPriority,
-    assignedId: "",
+    assignedIds: [],
   });
 
   if (isLoading) {

@@ -49,7 +49,7 @@ export const ProjectDetailsEdit = ({ onSaved }: ProjectDetailsEditProps) => {
   );
   const [projectStatus, setProjectStatus] = useState(project?.status);
 
-  const [noAdmins, setNoAdmin] = useState(false);
+  const [adminsTouched, setAdminsTouched] = useState(false);
 
   useEffect(() => {
     if (!project) return;
@@ -91,8 +91,10 @@ export const ProjectDetailsEdit = ({ onSaved }: ProjectDetailsEditProps) => {
   const handleSave = async () => {
     if (!project) return;
 
-    if (!selectedAdmins) {
-      return (setNoAdmin = true);
+    setAdminsTouched(true);
+
+    if (selectedAdmins.length === 0) {
+      return;
     }
 
     await mutateAsyncUpdate({
@@ -149,8 +151,12 @@ export const ProjectDetailsEdit = ({ onSaved }: ProjectDetailsEditProps) => {
             renderInput={(params) => (
               <TextField
                 {...params}
-                // error={selectedAdmins && selectedAdmins?.length == 0}
-                helperText={!selectedAdmins || "qwerqwe"}
+                error={adminsTouched && selectedAdmins.length === 0}
+                helperText={
+                  adminsTouched && selectedAdmins.length === 0
+                    ? "Select at least one admin."
+                    : ""
+                }
                 variant="outlined"
                 label="Admins"
               />

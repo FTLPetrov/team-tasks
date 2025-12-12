@@ -1,18 +1,11 @@
 import { Autocomplete, Box, MenuItem, TextField } from "@mui/material";
-import type { TaskStatus } from "../../utils/types/TaskStatus";
-import type { TaskPriority } from "../../utils/types/TaskPriority";
 import { useParams } from "react-router-dom";
 import { useGetAllUsers } from "../../api/controllers/userController";
 import { useGetAllTasks } from "../../api/controllers/tasksController";
 import type { User } from "../../api/types/userTypes";
+import type { Filters } from "../../utils/types/Filters";
 
-export type Filters = {
-  title: string;
-  description: string;
-  status: TaskStatus | "";
-  priority: TaskPriority | "";
-  assignedId: string;
-};
+
 
 type Props = {
   filters: Filters;
@@ -20,7 +13,7 @@ type Props = {
 };
 
 export const FilterTasksButtons = ({ onChange, filters }: Props) => {
-  const handleChange = (field: keyof Filters, value: string) => {
+  const handleChange = (field: keyof Filters, value: string | string[]) => {
     onChange({ ...filters, [field]: value });
   };
 
@@ -39,6 +32,10 @@ export const FilterTasksButtons = ({ onChange, filters }: Props) => {
   const assignedUsers: User[] = assignedUserIds
     .map((idToFind) => users.find((u) => u.id === idToFind))
     .filter(Boolean) as User[];
+
+  const selectedUsers = assignedUsers.filter((u) =>
+    filters.assignedIds.includes(u.id)
+  );
 
   return (
     <>
@@ -90,15 +87,19 @@ export const FilterTasksButtons = ({ onChange, filters }: Props) => {
         <Autocomplete
           multiple
           options={assignedUsers}
-          sx={{ minWidth: 200 }}
+          sx={{ minWidth: 260 }}
           size="small"
           getOptionLabel={(option) => option.displayName}
-          value={assignedUsers ?? undefined}
-          onChange={(e, newValue) =>
-            handleChange("assignedId", newValue?.id ?? "")
+          isOptionEqualToValue={(option, value) => option.id === value.id}
+          value={selectedUsers}
+          onChange={(_e, newValue) =>
+            handleChange(
+              "assignedIds",
+              newValue.map((u) => u.id)
+            )
           }
           renderInput={(params) => (
-            <TextField {...params} label="Assigned member" />
+            <TextField {...params} label="Assigned members" />
           )}
         />
       </Box>
