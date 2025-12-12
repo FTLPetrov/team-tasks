@@ -18,17 +18,6 @@ export const useGetAllTasks = () => {
   });
 };
 
-export const useGetTaskById = (id: string) => {
-  return useQuery<Task>({
-    queryKey: taskKeys.taskDetails(id),
-    queryFn: async () => {
-      const { data } = await axiosClient.get<Task>(`/tasks/${id}`);
-      return data;
-    },
-    enabled: !!id,
-  });
-};
-
 export const useCreateTask = () => {
   return useMutation({
     mutationFn: async (task: Partial<Task>) => {

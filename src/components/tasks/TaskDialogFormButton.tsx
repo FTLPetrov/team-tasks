@@ -207,19 +207,6 @@ export const TaskDialogFormButton = ({ task }: Props) => {
               </Select>
             </FormControl>
           </Box>
-
-          {/* <Autocomplete
-            multiple
-            options={users}
-            loading={usersLoading}
-            value={selectedUsers}
-            onChange={(_event, newValue) => setSelectedUsers(newValue)}
-            getOptionLabel={(option) => option.displayName}
-            sx={{ width: 300 }}
-            renderInput={(params) => (
-              <TextField {...params} label="Add members" />
-            )}
-          /> */}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

@@ -105,7 +105,7 @@ export const ProjectsDetailsPage = () => {
       </Paper>
       <Box sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
         <TaskDialogFormButton />
-        <FilterTasksButtons filters={filters} onChange={setFilters} />
+        <FilterTasksButtons filters={filters} setFilters={setFilters} />
       </Box>
       <Box sx={{ mt: 3, mb: 6 }}>
         <TaskTable filters={filters} />

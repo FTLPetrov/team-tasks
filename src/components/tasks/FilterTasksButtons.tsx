@@ -5,18 +5,12 @@ import { useGetAllTasks } from "../../api/controllers/tasksController";
 import type { User } from "../../api/types/userTypes";
 import type { Filters } from "../../utils/types/Filters";
 
-
-
 type Props = {
   filters: Filters;
-  onChange: (filters: Filters) => void;
+  setFilters: React.Dispatch<React.SetStateAction<Filters>>;
 };
 
-export const FilterTasksButtons = ({ onChange, filters }: Props) => {
-  const handleChange = (field: keyof Filters, value: string | string[]) => {
-    onChange({ ...filters, [field]: value });
-  };
-
+export const FilterTasksButtons = ({ filters, setFilters }: Props) => {
   const { id } = useParams();
   const { data: users = [] } = useGetAllUsers();
   const { data: tasks = [] } = useGetAllTasks();
@@ -36,6 +30,10 @@ export const FilterTasksButtons = ({ onChange, filters }: Props) => {
   const selectedUsers = assignedUsers.filter((u) =>
     filters.assignedIds.includes(u.id)
   );
+
+  const handleChange = (field: keyof Filters, value: string | string[]) => {
+    setFilters((prev) => ({ ...prev, [field]: value }));
+  };
 
   return (
     <>
