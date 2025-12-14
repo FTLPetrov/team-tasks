@@ -1,5 +1,6 @@
-import { AppBar, Button, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
 import { useAuth } from "../../utils/hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 type TopbarProps = {
   title?: string;
@@ -8,6 +9,7 @@ type TopbarProps = {
 export const Topbar = ({ title = "Team Management" }: TopbarProps) => {
   const { user, logout } = useAuth();
   const displayName = user?.displayName ?? "";
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
@@ -25,9 +27,18 @@ export const Topbar = ({ title = "Team Management" }: TopbarProps) => {
         <Typography variant="body1" sx={{ mr: 2 }}>
           {displayName ? `Welcome, ${displayName}` : "Welcome"}
         </Typography>
-        <Button color="inherit" onClick={handleLogout}>
-          Logout
-        </Button>
+        <Box display={"flex"} justifyContent={"space-between"} gap={2}>
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={() => navigate(`/profile`)}
+          >
+            View Profile
+          </Button>
+          <Button color="error" variant="contained" onClick={handleLogout}>
+            Logout
+          </Button>
+        </Box>
       </Toolbar>
     </AppBar>
   );
