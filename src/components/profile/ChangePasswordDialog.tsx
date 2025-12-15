@@ -41,7 +41,7 @@ export const ChangePasswordDialog = () => {
 
   useEffect(() => {
     if (!isDialogOpen) reset();
-  }, [open, reset]);
+  }, [isDialogOpen, reset]);
 
   const onSubmit = async (data: PasswordChangeValues) => {
     if (!user) return;
@@ -74,7 +74,7 @@ export const ChangePasswordDialog = () => {
       </Box>
       <Dialog open={isDialogOpen} fullWidth>
         <DialogTitle>Change password</DialogTitle>
-
+          
         <DialogContent>
           <Stack
             component="form"
@@ -82,7 +82,7 @@ export const ChangePasswordDialog = () => {
             onSubmit={handleSubmit(onSubmit)}
             spacing={2}
             sx={{ mt: 1 }}
-            noValidate
+
           >
             <TextField
               label="Current password"

@@ -28,7 +28,7 @@ type RegisterFormValues = {
 export const RegisterPage = () => {
   const { mutateAsync: mutateAsyncCreate } = useCreateUser();
   const { login } = useAuth();
-  const { data: users, isLoading } = useGetAllUsers();
+  const { data: users } = useGetAllUsers();
 
   const {
     register,
@@ -37,13 +37,6 @@ export const RegisterPage = () => {
     setError,
     formState: { errors, isValid, isSubmitting },
   } = useForm<RegisterFormValues>({
-    defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      secret: "",
-      confirmSecret: "",
-    },
     mode: "onChange",
   });
 
@@ -148,7 +141,7 @@ export const RegisterPage = () => {
                       validate: (v) =>
                         v.trim().length > 0 || "Email is required",
                       pattern: {
-                        value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                        value: /^[^\s@]+@[^\s@]+\.(com)$/i,
                         message: "Enter a valid email",
                       },
                     })}

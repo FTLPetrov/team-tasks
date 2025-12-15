@@ -14,13 +14,12 @@ type ProfileEditValues = {
   secret: string;
 };
 
-export const ProfileEdit = ({
-  onCancel,
-  onSaved,
-}: {
+type Props = {
   onCancel: () => void;
   onSaved: () => void;
-}) => {
+};
+
+export const ProfileEdit = ({ onCancel, onSaved }: Props) => {
   const { login, user } = useAuth();
 
   const { mutateAsync: mutateAsyncUpdate } = useUpdateUser(user?.id ?? "");
@@ -169,7 +168,7 @@ export const ProfileEdit = ({
             {...register("email", {
               required: "Email is required",
               pattern: {
-                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                value: /^[^\s@]+@[^\s@]+\.(com)$/i,
                 message: "Enter a valid email",
               },
             })}
