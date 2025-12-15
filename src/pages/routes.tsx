@@ -8,6 +8,7 @@ import { LoginPage } from "./LoginPage";
 import { ProtectedRoute } from "../utils/hooks/withAuth";
 import { ProjectsPage } from "./ProjectsPage";
 import { ProjectsDetailsPage } from "./ProjectDetailsPage";
+import { ProfilePage } from "./ProfilePage";
 
 export const routes: RouteObject[] = [
   {
@@ -23,7 +24,10 @@ export const routes: RouteObject[] = [
         index: true,
         element: <LandingPage />,
       },
-
+      {
+        path: "/profile",
+        element: <ProfilePage />,
+      },
       {
         path: "/teams",
         element: <TeamsPage />,

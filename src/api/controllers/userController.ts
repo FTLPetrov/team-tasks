@@ -44,3 +44,15 @@ export const useCreateUser = () => {
     },
   });
 };
+
+export const useUpdateUser = (userId: string) => {
+  return useMutation({
+    mutationFn: async (user: Partial<User>) => {
+      const response = await axiosClient.put(`/users/${userId}`, user);
+      return response.data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: userKeys.userDetails(userId) });
+    },
+  });
+};
