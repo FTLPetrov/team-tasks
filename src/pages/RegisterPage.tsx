@@ -3,214 +3,214 @@ import {
   Box,
   Button,
   Container,
-  CssBaseline,
   Grid,
+  Paper,
   TextField,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useCreateUser } from "../api/controllers/userController";
-import type { User } from "../api/types/userTypes";
+import {
+  useCreateUser,
+  useGetAllUsers,
+} from "../api/controllers/userController";
 import { useAuth } from "../utils/hooks/useAuth";
 import { useRedirectIfLogged } from "../utils/hooks/useRedirectIfLogged";
+import { useForm } from "react-hook-form";
+
+type RegisterFormValues = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  secret: string;
+  confirmSecret: string;
+};
 
 export const RegisterPage = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [secret, setSecret] = useState("");
-  const [confirmSecret, setConfirmSecret] = useState("");
-  const { mutateAsync } = useCreateUser();
+  const { mutateAsync: mutateAsyncCreate } = useCreateUser();
   const { login } = useAuth();
+  const { data: users, isLoading } = useGetAllUsers();
 
-  const validateFirstName = () => {
-    const trimmed = firstName.trim();
-    if (!trimmed) {
-      return "First name is required";
-    }
-    if (trimmed.charAt(0) !== trimmed.charAt(0).toUpperCase()) {
-      return "First name must start with uppercase";
-    }
-    return "";
-  };
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setError,
+    formState: { errors, isValid, isSubmitting },
+  } = useForm<RegisterFormValues>({
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      secret: "",
+      confirmSecret: "",
+    },
+    mode: "onChange",
+  });
 
-  const validateLastName = () => {
-    const trimmed = lastName.trim();
-    if (!trimmed) {
-      return "Last name is required";
-    }
-    if (trimmed.charAt(0) !== trimmed.charAt(0).toUpperCase()) {
-      return "Last name must start with uppercase";
-    }
-    return "";
-  };
+  const secret = watch("secret");
 
-  const validateEmail = () => {
-    if (!email.includes("@")) {
-      return false;
-    }
-
-    return true;
-  };
-
-  const validatePassword = () => {
-    if (secret.length <= 8) {
-      return "Password should be more than 8.";
-    }
-    let isValidNumber = false;
-
-    for (const char of secret) {
-      if (!isNaN(Number(char))) {
-        isValidNumber = true;
-      }
-    }
-    if (isValidNumber == false) {
-      return "Password should contain at least one number.";
-    }
-  };
-
-  const validateConfirmPassword = () => {
-    if (confirmSecret !== secret) {
-      return true;
+  const onSubmit = async (data: RegisterFormValues) => {
+    const exists = users?.some(
+      (u) => u.email.trim().toLowerCase() === data.email.trim().toLowerCase()
+    );
+    if (exists) {
+      setError("email", {
+        type: "manual",
+        message: "Email is already registered",
+      });
+      return;
     }
 
-    return false;
-  };
-
-  const firstNameError = validateFirstName();
-  const lastNameError = validateLastName();
-  const isEmailValid = validateEmail();
-  const passwordErrorMessage = validatePassword();
-  const isConfirmPasswordInvalid = !!validateConfirmPassword();
-  const isFormValid =
-    !firstNameError &&
-    !lastNameError &&
-    isEmailValid &&
-    !passwordErrorMessage &&
-    !isConfirmPasswordInvalid;
-
-  const handleRegister = () => {
-    mutateAsync({
-      firstName: firstName,
-      lastName: lastName,
-      displayName: `${firstName} ${lastName}`,
-      email: email,
-      secret: secret,
+    const newUser = await mutateAsyncCreate({
+      firstName: data.firstName,
+      lastName: data.lastName,
+      displayName: `${data.firstName} ${data.lastName}`,
+      email: data.email,
+      secret: data.secret,
       createdAt: new Date().toLocaleDateString(),
       updatedAt: new Date().toLocaleDateString(),
-    }).then((newUser) => {
-      login(newUser as unknown as User);
     });
+
+    login(newUser);
   };
+
   useRedirectIfLogged();
 
   return (
     <>
-      <Container maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            mt: 20,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: "primary.light" }}></Avatar>
-          <Typography variant="h5">Register</Typography>
-          <Box sx={{ mt: 3 }}>
-            <Grid container spacing={2}>
-              <Grid size={6}>
-                <TextField
-                  error={!!firstNameError}
-                  name="firstName"
-                  required
-                  fullWidth
-                  id="firstName"
-                  label="First Name"
-                  autoFocus
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
-                  helperText={firstNameError || " "}
-                />
-              </Grid>
-              <Grid size={6}>
-                <TextField
-                  error={!!lastNameError}
-                  name="lastName"
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  autoFocus
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
-                  helperText={lastNameError || " "}
-                />
-              </Grid>
+      <Box
+        sx={{
+          mt: 20,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <Container maxWidth="sm">
+          <Paper elevation={2} sx={{ p: 3 }}>
+            <Box display={"flex"} justifyContent={"center"}>
+              <Avatar sx={{ m: 1, bgcolor: "primary.light" }}></Avatar>
+            </Box>
+            <Typography variant="h5" sx={{ mb: 2 }} align="center">
+              Create account
+            </Typography>
 
-              <Grid size={12}>
-                <TextField
-                  error={!isEmailValid}
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  helperText={!isEmailValid && "Not a valid email"}
-                />
+            <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate>
+              <Grid container spacing={2}>
+                <Grid size={{ xs: 12, sm: 6 }}>
+                  <TextField
+                    label="First name"
+                    fullWidth
+                    {...register("firstName", {
+                      required: "First name is required",
+                      pattern: {
+                        value: /^[A-Za-z]+$/,
+                        message: "Only letters are allowed",
+                      },
+                      validate: (v) => {
+                        const value = v.trim();
+                        if (!value) return "First name is required";
+                        if (value[0] !== value[0].toUpperCase())
+                          return "First name must start with an uppercase letter";
+                        return true;
+                      },
+                    })}
+                    error={!!errors.firstName}
+                    helperText={errors.firstName?.message}
+                  />
+                </Grid>
+
+                <Grid size={{ xs: 12, sm: 6 }}>
+                  <TextField
+                    label="Last name"
+                    fullWidth
+                    {...register("lastName", {
+                      required: "Last name is required",
+                      validate: (v) => {
+                        const value = v.trim();
+                        if (!value) return "Last name is required";
+                        if (value[0] !== value[0].toUpperCase())
+                          return "Last name must start with an uppercase letter";
+                        return true;
+                      },
+                    })}
+                    error={!!errors.lastName}
+                    helperText={errors.lastName?.message}
+                  />
+                </Grid>
+
+                <Grid size={{ xs: 12 }}>
+                  <TextField
+                    label="Email"
+                    fullWidth
+                    {...register("email", {
+                      required: "Email is required",
+                      validate: (v) =>
+                        v.trim().length > 0 || "Email is required",
+                      pattern: {
+                        value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                        message: "Enter a valid email",
+                      },
+                    })}
+                    error={!!errors.email}
+                    helperText={errors.email?.message}
+                  />
+                </Grid>
+
+                <Grid size={{ xs: 12 }}>
+                  <TextField
+                    label="Password"
+                    type="password"
+                    fullWidth
+                    {...register("secret", {
+                      required: "Password is required",
+                      pattern: {
+                        value:
+                          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9])\S{12,}$/,
+                        message:
+                          "Password must be 12+ chars and include upper, lower, number, and special character (no spaces).",
+                      },
+                    })}
+                    error={!!errors.secret}
+                    helperText={errors.secret?.message}
+                  />
+                </Grid>
+
+                <Grid size={{ xs: 12 }}>
+                  <TextField
+                    label="Confirm password"
+                    type="password"
+                    fullWidth
+                    {...register("confirmSecret", {
+                      required: "Confirm password is required",
+                      validate: (v) => v === secret || "Passwords do not match",
+                    })}
+                    error={!!errors.confirmSecret}
+                    helperText={errors.confirmSecret?.message}
+                  />
+                </Grid>
+
+                <Grid size={{ xs: 12 }}>
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    fullWidth
+                    disabled={!isValid || isSubmitting}
+                  >
+                    Register
+                  </Button>
+                </Grid>
               </Grid>
-              <Grid size={12}>
-                <TextField
-                  error={!!passwordErrorMessage}
-                  required
-                  fullWidth
-                  name="secret"
-                  label="Password"
-                  type="password"
-                  id="secret"
-                  value={secret}
-                  onChange={(e) => setSecret(e.target.value)}
-                  helperText={passwordErrorMessage}
-                />
-              </Grid>
-              <Grid size={12}>
-                <TextField
-                  error={isConfirmPasswordInvalid}
-                  required
-                  fullWidth
-                  name="password"
-                  label="Confirm Password"
-                  type="password"
-                  id="password"
-                  value={confirmSecret}
-                  onChange={(e) => setConfirmSecret(e.target.value)}
-                  helperText={
-                    isConfirmPasswordInvalid && "Passwords don't match"
-                  }
-                />
-              </Grid>
-            </Grid>
-            <Button
-              disabled={!isFormValid}
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-              onClick={handleRegister}
-            >
-              Register
-            </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid>
-                <Link to="/login">Already have an account? Login</Link>
-              </Grid>
-            </Grid>
-          </Box>
-        </Box>
-      </Container>
+            </Box>
+
+            <Box sx={{ mt: 2 }}>
+              <Typography variant="body2">
+                Already have an account? <Link to="/login">Login</Link>
+              </Typography>
+            </Box>
+          </Paper>
+        </Container>
+      </Box>
     </>
   );
 };

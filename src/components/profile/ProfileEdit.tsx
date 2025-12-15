@@ -1,7 +1,9 @@
+/* eslint-disable react-hooks/immutability */
 import { useEffect } from "react";
 import { useAuth } from "../../utils/hooks/useAuth";
 import { useForm } from "react-hook-form";
-import { Box, Grid, TextField } from "@mui/material";
+import { Box, Button, Grid, TextField, Typography } from "@mui/material";
+import { Edit as EditIcon } from "@mui/icons-material";
 import { useUpdateUser } from "../../api/controllers/userController";
 
 type ProfileEditValues = {
@@ -10,11 +12,16 @@ type ProfileEditValues = {
   displayName: string;
   email: string;
   secret: string;
-  confirmSecret: string;
 };
 
-export const ProfileEdit = ({ onSaved }: { onSaved: () => void }) => {
-  const user = useAuth().user;
+export const ProfileEdit = ({
+  onCancel,
+  onSaved,
+}: {
+  onCancel: () => void;
+  onSaved: () => void;
+}) => {
+  const { login, user } = useAuth();
 
   const { mutateAsync: mutateAsyncUpdate } = useUpdateUser(user?.id ?? "");
 
@@ -22,7 +29,6 @@ export const ProfileEdit = ({ onSaved }: { onSaved: () => void }) => {
     register,
     handleSubmit,
     reset,
-    watch,
     formState: { errors },
   } = useForm<ProfileEditValues>({
     defaultValues: {
@@ -30,10 +36,8 @@ export const ProfileEdit = ({ onSaved }: { onSaved: () => void }) => {
       lastName: user?.lastName ?? "",
       displayName: user?.displayName ?? "",
       email: user?.email ?? "",
-      secret: "",
-      confirmSecret: "",
     },
-    mode: "onBlur",
+    mode: "onChange",
   });
 
   useEffect(() => {
@@ -43,12 +47,8 @@ export const ProfileEdit = ({ onSaved }: { onSaved: () => void }) => {
       lastName: user.lastName,
       displayName: user.displayName,
       email: user.email,
-      secret: "",
-      confirmSecret: "",
     });
   }, [user, reset]);
-
-  const secret = watch("secret");
 
   const onSubmit = (data: ProfileEditValues) => {
     mutateAsyncUpdate({
@@ -56,8 +56,10 @@ export const ProfileEdit = ({ onSaved }: { onSaved: () => void }) => {
       lastName: data.lastName,
       displayName: data.displayName,
       email: data.email,
-      secret: data.secret || undefined,
-    });
+      secret: user?.secret,
+      createdAt: user?.createdAt,
+      updatedAt: new Date().toLocaleDateString(),
+    }).then(login);
 
     onSaved();
   };
@@ -71,6 +73,36 @@ export const ProfileEdit = ({ onSaved }: { onSaved: () => void }) => {
       onSubmit={handleSubmit(onSubmit)}
       noValidate
     >
+      <Box display={"flex"} justifyContent="space-between">
+        <Typography variant="h6">Profile</Typography>
+
+        <Box
+          display="flex"
+          justifyContent="space-between"
+          sx={{ mb: 2 }}
+          gap={1}
+        >
+          <Button
+            size="small"
+            variant="contained"
+            color="error"
+            startIcon={<EditIcon />}
+            onClick={onCancel}
+          >
+            Cancel
+          </Button>
+          <Button
+            size="small"
+            variant="contained"
+            startIcon={<EditIcon />}
+            onClick={() => onSubmit}
+            type="submit"
+          >
+            Save
+          </Button>
+        </Box>
+      </Box>
+
       <Grid container spacing={2}>
         <Grid size={{ xs: 12, sm: 6 }}>
           <TextField
@@ -78,6 +110,13 @@ export const ProfileEdit = ({ onSaved }: { onSaved: () => void }) => {
             fullWidth
             {...register("firstName", {
               required: "First name is required",
+              validate: (v) => {
+                const value = v.trim();
+                if (!value) return "First name is required";
+                if (value[0] !== value[0].toUpperCase())
+                  return "First name must start with an uppercase letter";
+                return true;
+              },
             })}
             error={!!errors.firstName}
             helperText={errors.firstName?.message}
@@ -90,6 +129,13 @@ export const ProfileEdit = ({ onSaved }: { onSaved: () => void }) => {
             fullWidth
             {...register("lastName", {
               required: "Last name is required",
+              validate: (v) => {
+                const value = v.trim();
+                if (!value) return "First name is required";
+                if (value[0] !== value[0].toUpperCase())
+                  return "First name must start with an uppercase letter";
+                return true;
+              },
             })}
             error={!!errors.lastName}
             helperText={errors.lastName?.message}
@@ -102,6 +148,14 @@ export const ProfileEdit = ({ onSaved }: { onSaved: () => void }) => {
             fullWidth
             {...register("displayName", {
               required: "Display name is required",
+              minLength: {
+                value: 4,
+                message: "Display name must be at least 4 characters",
+              },
+              pattern: {
+                value: /^[A-Za-z0-9]+$/,
+                message: "Display name can contain only letters and numbers",
+              },
             })}
             error={!!errors.displayName}
             helperText={errors.displayName?.message}
@@ -121,38 +175,6 @@ export const ProfileEdit = ({ onSaved }: { onSaved: () => void }) => {
             })}
             error={!!errors.email}
             helperText={errors.email?.message}
-          />
-        </Grid>
-
-        <Grid size={{ xs: 12, sm: 6 }}>
-          <TextField
-            label="New password"
-            type="password"
-            fullWidth
-            {...register("secret", {
-              validate: (v) =>
-                !v || v.length >= 6 || "Password must be at least 6 characters",
-            })}
-            error={!!errors.secret}
-            helperText={
-              errors.secret?.message || "Leave blank to keep current password"
-            }
-          />
-        </Grid>
-
-        <Grid size={{ xs: 12, sm: 6 }}>
-          <TextField
-            label="Confirm password"
-            type="password"
-            fullWidth
-            {...register("confirmSecret", {
-              validate: (v) => {
-                if (!secret && !v) return true;
-                return v === secret || "Passwords do not match";
-              },
-            })}
-            error={!!errors.confirmSecret}
-            helperText={errors.confirmSecret?.message}
           />
         </Grid>
       </Grid>
