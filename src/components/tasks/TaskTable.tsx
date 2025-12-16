@@ -8,12 +8,18 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useGetAllTasks } from "../../api/controllers/tasksController";
 import { useGetAllUsers } from "../../api/controllers/userController";
-import { Box, MenuItem, Pagination, TextField } from "@mui/material";
+import {
+  Box,
+  MenuItem,
+  Pagination,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { TaskDialogFormButton } from "./TaskDialogFormButton";
 import { TaskDeleteButton } from "./TaskDeleteButton";
 import { useEffect, useMemo, useState } from "react";
 import type { Filters } from "../../utils/types/Filters";
-
+import { AdaptiveTable } from "../common/AdaptiveTable";
 
 type Props = {
   filters: Filters;
@@ -78,74 +84,107 @@ export const TaskTable = ({ filters }: Props) => {
   );
 
   return (
-    <TableContainer component={Paper} sx={{maxHeight: 500, overflowY:"auto"}}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell align="center">Title</TableCell>
-            <TableCell align="center">Description</TableCell>
-            <TableCell align="center">Status</TableCell>
-            <TableCell align="center">Priority</TableCell>
-            <TableCell align="center">Assigned member</TableCell>
-            <TableCell align="center">Created At</TableCell>
-            <TableCell align="center">Updated</TableCell>
-            <TableCell align="center">Operations</TableCell>
-          </TableRow>
-        </TableHead>
+    <>
+      <Typography>NEW</Typography>
+      <AdaptiveTable
+        rows={filteredRows}
+        columns={[
+          {
+            columnId: "title",
+            columnLabel: "Title",
+            columnTextStyle: { fontSize: 16, color: "green" },
+            rowCellTextStyle: { fontWeight: "bold", fontSize: 12 },
+          },
+          {
+            columnId: "description",
+            columnLabel: "Description",
+          },
+          {
+            columnId: "actions",
+            columnLabel: "Actions",
+            renderCell: (_, row) => (
+              <Box display={"flex"} justifyContent={"flex-end"} gap={1}>
+                <TaskDeleteButton task={row} />
+                <TaskDialogFormButton task={row} />
+              </Box>
+            ),
+          },
+        ]}
+      />
 
-        <TableBody>
-          {visibleRows.map((task) => {
-            const assignedMember = users.find(
-              (user) => user.id === task.assignedUserId
-            )?.displayName;
-
-            return (
-              <TableRow
-                key={task.id}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell align="left">{task.title}</TableCell>
-                <TableCell component="th" scope="row">
-                  {task.description}
-                </TableCell>
-                <TableCell align="center">{task.status}</TableCell>
-                <TableCell align="center">{task.priority}</TableCell>
-                <TableCell align="center">{assignedMember}</TableCell>
-                <TableCell align="center">{task.createdAt}</TableCell>
-                <TableCell align="center">{task.updatedAt}</TableCell>
-                <TableCell align="center">
-                  <Box display={"flex"} justifyContent={"flex-end"} gap={1}>
-                    <TaskDeleteButton task={task} />
-                    <TaskDialogFormButton task={task} />
-                  </Box>
-                </TableCell>
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
-
-      <Box
-        display={"flex"}
-        justifyContent={"end"}
-        alignItems={"center"}
-        p={1}
+      <Typography>OLD</Typography>
+      <TableContainer
+        component={Paper}
+        sx={{ maxHeight: 500, overflowY: "auto" }}
       >
-        <TextField
-          label="Rows"
-          select
-          size="small"
-          value={rowsPerPage}
-          onChange={(e) => setRowsPerPage(Number(e.target.value))}
-          sx={{ width: 100 }}
-        >
-          <MenuItem value={5}>5</MenuItem>
-          <MenuItem value={10}>10</MenuItem>
-          <MenuItem value={25}>25</MenuItem>
-        </TextField>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell align="center">Title</TableCell>
+              <TableCell align="center">Description</TableCell>
+              <TableCell align="center">Status</TableCell>
+              <TableCell align="center">Priority</TableCell>
+              <TableCell align="center">Assigned member</TableCell>
+              <TableCell align="center">Created At</TableCell>
+              <TableCell align="center">Updated</TableCell>
+              <TableCell align="center">Operations</TableCell>
+            </TableRow>
+          </TableHead>
 
-        <Pagination count={pageCount} page={page} onChange={handleChange} />
-      </Box>
-    </TableContainer>
+          <TableBody>
+            {visibleRows.map((task) => {
+              const assignedMember = users.find(
+                (user) => user.id === task.assignedUserId
+              )?.displayName;
+
+              return (
+                <TableRow
+                  key={task.id}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell align="left">{task.title}</TableCell>
+                  <TableCell component="th" scope="row">
+                    {task.description}
+                  </TableCell>
+                  <TableCell align="center">{task.status}</TableCell>
+                  <TableCell align="center">{task.priority}</TableCell>
+                  <TableCell align="center">{assignedMember}</TableCell>
+                  <TableCell align="center">{task.createdAt}</TableCell>
+                  <TableCell align="center">{task.updatedAt}</TableCell>
+                  <TableCell align="center">
+                    <Box display={"flex"} justifyContent={"flex-end"} gap={1}>
+                      <TaskDeleteButton task={task} />
+                      <TaskDialogFormButton task={task} />
+                    </Box>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+
+        <Box
+          display={"flex"}
+          justifyContent={"end"}
+          alignItems={"center"}
+          p={1}
+        >
+          <TextField
+            label="Rows"
+            select
+            size="small"
+            value={rowsPerPage}
+            onChange={(e) => setRowsPerPage(Number(e.target.value))}
+            sx={{ width: 100 }}
+          >
+            <MenuItem value={5}>5</MenuItem>
+            <MenuItem value={10}>10</MenuItem>
+            <MenuItem value={25}>25</MenuItem>
+          </TextField>
+
+          <Pagination count={pageCount} page={page} onChange={handleChange} />
+        </Box>
+      </TableContainer>
+    </>
   );
 };
