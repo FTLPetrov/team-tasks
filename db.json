@@ -225,7 +225,7 @@
         "9b1a",
         "a2e4"
       ],
-      "status": "ACTIVE"
+      "status": "Completed"
     },
     {
       "id": "p2",
@@ -237,7 +237,7 @@
       "teamIds": ["c1d8", "7548"],
       "adminIds": ["4"],
       "memberIds": ["1", "4", "9b1a", "a2e4"],
-      "status": "ACTIVE"
+      "status": "Active"
     },
     {
       "id": "p3",
@@ -249,7 +249,7 @@
       "teamIds": ["4e2f", "4f6c"],
       "adminIds": ["8cf1", "5a85"],
       "memberIds": ["2", "7d2c", "8cf1", "5a85"],
-      "status": "ACTIVE"
+      "status": "Active"
     },
     {
       "id": "p4",
@@ -261,7 +261,7 @@
       "teamIds": ["2459"],
       "adminIds": ["2"],
       "memberIds": ["2", "7d2c", "3"],
-      "status": "ACTIVE"
+      "status": "Active"
     },
     {
       "id": "p5",
@@ -273,7 +273,7 @@
       "teamIds": ["9977"],
       "adminIds": ["3"],
       "memberIds": ["3", "6f9b"],
-      "status": "ACTIVE"
+      "status": "Active"
     },
     {
       "id": "p6",
@@ -285,7 +285,7 @@
       "teamIds": ["2459", "c1d8"],
       "adminIds": ["1"],
       "memberIds": ["1", "2", "9b1a"],
-      "status": "ACTIVE"
+      "status": "Active"
     },
     {
       "id": "p7",
@@ -297,7 +297,7 @@
       "teamIds": ["4f6c"],
       "adminIds": ["5a85"],
       "memberIds": ["5a85", "8cf1"],
-      "status": "ACTIVE"
+      "status": "Active"
     },
     {
       "id": "p8",
@@ -309,7 +309,7 @@
       "teamIds": ["7548", "c1d8"],
       "adminIds": ["4"],
       "memberIds": ["4", "a2e4", "9b1a"],
-      "status": "ACTIVE"
+      "status": "Active"
     },
     {
       "id": "p9",
@@ -321,7 +321,7 @@
       "teamIds": ["1", "2"],
       "adminIds": ["1"],
       "memberIds": ["1", "2", "3"],
-      "status": "ACTIVE"
+      "status": "Active"
     },
     {
       "id": "p10",
@@ -333,7 +333,18 @@
       "teamIds": ["2459", "9977"],
       "adminIds": ["2", "3"],
       "memberIds": ["2", "3", "6f9b", "7d2c"],
-      "status": "ACTIVE"
+      "status": "Active"
+    },
+    {
+      "name": "Test",
+      "description": "Tester",
+      "createdAt": "2025-12-17T09:51:23.750Z",
+      "updatedAt": "12/17/2025",
+      "teamIds": ["1", "2"],
+      "adminIds": ["1"],
+      "memberIds": ["1"],
+      "status": "Active",
+      "id": "4e5c"
     }
   ],
   "tasks": [
@@ -341,7 +352,7 @@
       "id": "t001",
       "title": "Atlas: Define KPIs",
       "description": "Confirm KPI definitions and naming for the analytics dashboard.",
-      "status": "Todo",
+      "status": "Completed",
       "priority": "High",
       "assignedUserId": "1",
       "createdAt": "12/01/2025",
@@ -352,7 +363,7 @@
       "id": "t002",
       "title": "Atlas: Dashboard layout",
       "description": "Create baseline dashboard layout with placeholders.",
-      "status": "In-progress",
+      "status": "Completed",
       "priority": "Medium",
       "assignedUserId": "1",
       "createdAt": "12/02/2025",
@@ -671,7 +682,7 @@
       "id": "t031",
       "title": "Helix: Integration tests",
       "description": "Write test cases for common request flows and failures.",
-      "status": "Todo",
+      "status": "Deactivated",
       "priority": "Medium",
       "assignedUserId": "3",
       "createdAt": "12/07/2025",
