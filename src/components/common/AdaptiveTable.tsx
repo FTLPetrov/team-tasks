@@ -6,7 +6,6 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
 import {
   Box,
   MenuItem,
@@ -51,50 +50,75 @@ export const AdaptiveTable = <T extends object>({
   const visibleRows = rows.slice(lastPerPage - rowsPerPage, lastPerPage);
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            {columns.map((column) => (
-              <TableCell
-                key={String(column.columnId)}
-                align="center"
-                sx={column?.columnTextStyle}
-              >
-                {column.columnLabel}
-              </TableCell>
-            ))}
-          </TableRow>
-        </TableHead>
+    <Box
+      sx={{
+        height: 600,
+        display: "flex",
+        flexDirection: "column",
+        overflow: "hidden",
+      }}
+    >
+      <TableContainer
+        sx={{
+          flex: 1,
+          minHeight: 0,
+          overflow: "auto",
+        }}
+      >
+        <Table stickyHeader sx={{ minWidth: 650, tableLayout: "fixed" }}>
+          <TableHead>
+            <TableRow sx={{ height: 80 }}>
+              {columns.map((column) => (
+                <TableCell
+                  key={String(column.columnId)}
+                  align="center"
+                  sx={{
+                    bgcolor: "background.paper",
+                    ...column.columnTextStyle,
+                  }}
+                >
+                  {column.columnLabel}
+                </TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
 
-        <TableBody>
-          {visibleRows.map((row: any, rowIndex) => {
-            if (!row) return null;
-
-            return (
-              <TableRow key={rowIndex}>
+          <TableBody>
+            {visibleRows.map((row: any, rowIndex) => (
+              <TableRow key={rowIndex} sx={{ height: 80 }}>
                 {columns.map((column) => {
                   const columnData = row[column.columnId];
-
                   return (
                     <TableCell
                       key={column.columnLabel}
                       align="center"
-                      sx={column?.rowCellTextStyle}
+                      sx={column.rowCellTextStyle}
                     >
-                      {column?.renderCell?.(columnData, row) ??
-                        column?.formatValue?.(columnData, row) ??
+                      {column.renderCell?.(columnData, row) ??
+                        column.formatValue?.(columnData, row) ??
                         columnData}
                     </TableCell>
                   );
                 })}
               </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
 
-      <Box display={"flex"} justifyContent={"end"} alignItems={"center"} p={1}>
+      <Box
+        sx={{
+          mt: "auto",
+          display: "flex",
+          justifyContent: "end",
+          alignItems: "center",
+          gap: 2,
+          p: 1,
+          borderTop: 1,
+          borderColor: "divider",
+          bgcolor: "background.paper",
+        }}
+      >
         <TextField
           label="Rows"
           select
@@ -110,23 +134,6 @@ export const AdaptiveTable = <T extends object>({
 
         <Pagination count={pageCount} page={page} onChange={handleChange} />
       </Box>
-      
-    </TableContainer>
+    </Box>
   );
 };
-
-{
-  /* {rows.map((row, rowIndex) => {
-  const record = row as Record<string, unknown>;
-
-  return (
-    <TableRow key={String(record.id ?? rowIndex)}>
-      {keys.map((key) => (
-        <TableCell key={key} align="center">
-          {resolveValue(key, record[key])}
-        </TableCell>
-      ))}
-    </TableRow>
-  );
-})} */
-}
