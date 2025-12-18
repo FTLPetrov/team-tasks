@@ -20,7 +20,7 @@ type TableBodyProps<T extends object> = {
   rows: T[];
   columns: {
     columnId: keyof T | "actions" | string;
-    columnLabel: string;
+    columnLabel?: string;
     columnTextStyle?: SxProps<Theme>;
     rowCellTextStyle?: SxProps<Theme>;
 
