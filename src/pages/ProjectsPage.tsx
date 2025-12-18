@@ -1,25 +1,26 @@
-import { Box, CircularProgress, Typography } from "@mui/material";
-import { useGetAllProjects } from "../api/controllers/projectsController";
-import { useAuth } from "../utils/hooks/useAuth";
-import { ProjectCard } from "../components/projects/ProjectCard";
+import { Box, Button, Typography } from "@mui/material";
 import { AddProjectButton } from "../components/projects/AddProjectButton";
+import { ProjectsLayoutDefault } from "../components/layout/ProjectsLayoutDefault";
+import { useState } from "react";
+import { ProjectLayoutVertical } from "../components/layout/ProjectsLayoutVertical";
+import { useNavigate } from "react-router-dom";
 
 export const ProjectsPage = () => {
-  const { data = [], isLoading, isError, error } = useGetAllProjects();
-  const { user } = useAuth();
-  const currentUser = user?.id;
+  const [view, setView] = useState(false);
+  const [selectedProjectId, setSelectedProjectId] = useState<string | null>(
+    null
+  );
+  const navigate = useNavigate();
 
-  const visibleProjects = data.filter((project) => {
-    if (!currentUser) return false;
-    if (
-      project.adminIds.includes(currentUser) ||
-      project.memberIds.includes(currentUser)
-    ) {
-      return true;
+  const handleViewMode = () => setView((prev) => !prev);
+
+  const handleViewDetails = (projectId: string) => {
+    if (view) {
+      setSelectedProjectId(projectId);
+    } else {
+      navigate(`/projects/${projectId}`);
     }
-
-    return false;
-  });
+  };
 
   return (
     <Box sx={{ p: 3 }}>
@@ -34,29 +35,22 @@ export const ProjectsPage = () => {
         <Typography variant="h5" component="h2">
           Projects
         </Typography>
-        <AddProjectButton />
+
+        <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 2 }}>
+          <Button onClick={handleViewMode} variant="contained">
+            View mode
+          </Button>
+          <AddProjectButton />
+        </Box>
       </Box>
 
-      {isLoading && (
-        <Box className="teams-loading">
-          <CircularProgress />
-        </Box>
-      )}
-
-      {isError && (
-        <Typography color="error">Error: {(error as Error).message}</Typography>
-      )}
-
-      {!isLoading && !isError && visibleProjects.length === 0 && (
-        <Typography>No projects available for your account.</Typography>
-      )}
-
-      {!isLoading && !isError && visibleProjects.length > 0 && (
-        <Box className="teams-container">
-          {visibleProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
-        </Box>
+      {view ? (
+        <ProjectLayoutVertical
+          onViewDetails={handleViewDetails}
+          selectedProjectId={selectedProjectId}
+        />
+      ) : (
+        <ProjectsLayoutDefault onViewDetails={handleViewDetails} />
       )}
     </Box>
   );

@@ -1,4 +1,4 @@
-import { Box, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import { TeamsTable } from "../components/common/TeamsTable";
 import { MembersTable } from "../components/common/MembersTable";
 import { ProjectsTable } from "../components/common/ProjectsTable";

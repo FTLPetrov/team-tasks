@@ -7,7 +7,6 @@ import {
 } from "@mui/material";
 import { useGetProjectById } from "../api/controllers/projectsController";
 import { useParams } from "react-router-dom";
-import { ProjectDetailsView } from "../components/projects/ProjectDetailsView";
 import { useState } from "react";
 import { ProjectDetailsEdit } from "../components/projects/ProjectDetailsEdit";
 import EditIcon from "@mui/icons-material/Edit";
@@ -21,8 +20,9 @@ import {
 import type { TaskStatus } from "../utils/types/TaskStatus";
 import type { TaskPriority } from "../utils/types/TaskPriority";
 import type { Filters } from "../utils/types/Filters";
+import { ProjectDetailsView } from "../components/projects/ProjectDetailsView";
 
-export const ProjectsDetailsPage = () => {
+export const ProjectDetailsPage = () => {
   const { id } = useParams();
   const { data, isLoading, isError, error } = useGetProjectById(id!);
   const [isEditing, setIsEditing] = useState(false);
@@ -63,46 +63,13 @@ export const ProjectsDetailsPage = () => {
 
   return (
     <Box>
-      <Paper sx={{ p: 2, mb: 3 }} elevation={3}>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            mb: 3,
-          }}
-        >
-          <Typography variant="h4" component="h1" gutterBottom>
-            Project Details
-          </Typography>
-          <Box sx={{ display: "flex", gap: 1 }}>
-            <DeleteProjectButton project={data} />
-            {isEditing ? (
-              <Button
-                color="error"
-                variant="contained"
-                startIcon={<CloseIcon />}
-                onClick={() => setIsEditing(false)}
-              >
-                Cancel
-              </Button>
-            ) : (
-              <Button
-                startIcon={<EditIcon />}
-                onClick={() => setIsEditing(true)}
-                variant="contained"
-              >
-                Edit
-              </Button>
-            )}
-          </Box>
-        </Box>
+
         {isEditing ? (
           <ProjectDetailsEdit onSaved={() => setIsEditing(false)} />
         ) : (
           <ProjectDetailsView />
         )}
-      </Paper>
+
       <Box sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
         <TaskDialogFormButton />
         <FilterTasksButtons filters={filters} onChange={setFilters} />
