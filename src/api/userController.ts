@@ -44,11 +44,18 @@ export const useCreateUser = () => {
 export const useUpdateUser = (userId: number) => {
   return useMutation({
     mutationFn: async (user: Partial<User>) => {
-      const response = await axiosClient.put<User>(`/users/${userId}`, user);
+      const currentUser = await axiosClient.get<User>(`/users/${userId}`);
+      const response = await axiosClient.put<User>(`/users/${userId}`, {
+        ...currentUser.data,
+        ...user,
+        createdAt: currentUser.data.createdAt,
+        updatedAt: new Date().toISOString(),
+      });
       return response.data;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: userKeys.userDetails(userId) });
+      queryClient.invalidateQueries({ queryKey: userKeys.allUsers });
     },
   });
 };
