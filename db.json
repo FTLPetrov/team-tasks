@@ -53,24 +53,6 @@
       "lastName": "Chen",
       "createdAt": "2025-01-10T10:00:00Z",
       "updatedAt": "2025-01-10T10:00:00Z"
-    },
-    {
-      "firstName": "123",
-      "lastName": "123",
-      "email": "123@asdf.asdf",
-      "displayName": "qwerqwer",
-      "secret": "Mamatidaeba100!",
-      "id": 4
-    },
-    {
-      "firstName": "Test",
-      "lastName": "Tester",
-      "email": "test@gmail.com",
-      "secret": "Mamatidaeba100!",
-      "displayName": "Test123",
-      "updatedAt": "2025-12-23T13:10:54.612Z",
-      "createdAt": "2025-01-10T10:00:00Z",
-      "id": 5
     }
   ],
   "projects": [
