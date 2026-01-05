@@ -1,4 +1,4 @@
-import type { User } from "../../api/userTypes";
+import type { User } from "../../api/types/userTypes";
 
 export type LoginCredentials = {
   email: string;

@@ -2,7 +2,7 @@
 /* eslint-disable react-hooks/set-state-in-effect */
 import { createContext, useContext, useState, useEffect } from "react";
 import type { ReactNode } from "react";
-import type { User } from "../api/userTypes";
+import type { User } from "../api/types/userTypes";
 import type {
   LoginCredentials,
   AuthContextValue,

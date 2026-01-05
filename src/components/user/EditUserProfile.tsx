@@ -1,6 +1,6 @@
 import { TextField, Button, Paper, Grid, Box } from "@mui/material";
 import { useState, useEffect } from "react";
-import type { User } from "../../api/userTypes";
+import type { User } from "../../api/types/userTypes";
 
 type EditUserProfileProps = {
   user: User;
@@ -79,7 +79,9 @@ export const EditUserProfile = ({
             />
           </Grid>
         </Grid>
-        <Box sx={{ display: "flex", gap: 2, mt: 3, justifyContent: "flex-end" }}>
+        <Box
+          sx={{ display: "flex", gap: 2, mt: 3, justifyContent: "flex-end" }}
+        >
           <Button variant="outlined" onClick={onCancel} disabled={isSubmitting}>
             Cancel
           </Button>

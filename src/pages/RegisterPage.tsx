@@ -12,9 +12,13 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useAuth } from "../auth/AuthProvider";
-import { useCreateUser } from "../api/userController";
-import { useGetAllUsers } from "../api/userController";
-import { validatePassword, validateName, validateEmail } from "../utils/validation";
+import { useCreateUser } from "../api/controllers/userController";
+import { useGetAllUsers } from "../api/controllers/userController";
+import {
+  validatePassword,
+  validateName,
+  validateEmail,
+} from "../utils/validation";
 
 type RegisterFormValues = {
   firstName: string;
@@ -50,7 +54,11 @@ export const RegisterPage = () => {
   const password = watch("password");
 
   const onSubmit = async (data: RegisterFormValues) => {
-    if (users?.some((u) => u.email.toLowerCase() === data.email.trim().toLowerCase())) {
+    if (
+      users?.some(
+        (u) => u.email.toLowerCase() === data.email.trim().toLowerCase()
+      )
+    ) {
       setError("email", {
         type: "manual",
         message: "Email already exists",
@@ -59,7 +67,8 @@ export const RegisterPage = () => {
     }
 
     const displayName =
-      data.displayName.trim() || `${data.firstName.trim()} ${data.lastName.trim()}`;
+      data.displayName.trim() ||
+      `${data.firstName.trim()} ${data.lastName.trim()}`;
 
     const userData = {
       firstName: data.firstName.trim(),
@@ -72,12 +81,12 @@ export const RegisterPage = () => {
     };
 
     await createUserMutation.mutateAsync(userData);
-    
+
     await loginAction({
       email: data.email.trim().toLowerCase(),
       password: data.password,
     });
-    
+
     navigate("/");
   };
 
@@ -178,7 +187,9 @@ export const RegisterPage = () => {
                   type="submit"
                   variant="contained"
                   fullWidth
-                  disabled={!isValid || isSubmitting || createUserMutation.isPending}
+                  disabled={
+                    !isValid || isSubmitting || createUserMutation.isPending
+                  }
                 >
                   {isSubmitting || createUserMutation.isPending
                     ? "Creating account..."

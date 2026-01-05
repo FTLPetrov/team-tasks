@@ -9,7 +9,7 @@ import {
   TextField,
   Grid,
 } from "@mui/material";
-import type { User } from "../../api/userTypes";
+import type { User } from "../../api/types/userTypes";
 import { validatePassword } from "../../utils/validation";
 
 type ChangePasswordFormValues = {
@@ -20,7 +20,10 @@ type ChangePasswordFormValues = {
 
 type ChangePasswordButtonProps = {
   user: User;
-  onPasswordChange: (currentPassword: string, newPassword: string) => Promise<void>;
+  onPasswordChange: (
+    currentPassword: string,
+    newPassword: string
+  ) => Promise<void>;
 };
 
 export const ChangePasswordButton = ({

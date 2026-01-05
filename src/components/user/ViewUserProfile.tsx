@@ -1,5 +1,5 @@
 import { Typography, Paper, Grid } from "@mui/material";
-import type { User } from "../../api/userTypes";
+import type { User } from "../../api/types/userTypes";
 
 type ViewUserProfileProps = {
   user: User;
@@ -57,4 +57,3 @@ export const ViewUserProfile = ({ user }: ViewUserProfileProps) => {
     </Paper>
   );
 };
-
