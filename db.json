@@ -38,16 +38,6 @@
       "owner": 4,
       "createdAt": "2026-01-06T08:35:24.600Z",
       "updatedAt": "2026-01-06T08:35:58.962Z"
-    },
-    {
-      "name": "For del",
-      "users": [
-        1
-      ],
-      "owner": 4,
-      "createdAt": "2026-01-06T09:10:49.151Z",
-      "updatedAt": "2026-01-06T09:10:49.151Z",
-      "id": 6
     }
   ],
   "users": [
@@ -96,7 +86,7 @@
       "id": 1,
       "name": "Project Atlas",
       "description": "Internal analytics platform",
-      "status": "active",
+      "teamIds": [],
       "adminIds": [
         1
       ],
@@ -104,40 +94,28 @@
         2,
         3
       ],
-      "teamIds": [],
+      "status": "active",
+      "posts": [],
       "createdAt": "2025-01-10T10:00:00Z",
-      "updatedAt": "2025-01-10T10:00:00Z"
-    },
-    {
-      "id": 2,
-      "name": "Mobile Banking App",
-      "description": "Banking app MVP",
-      "status": "paused",
-      "adminIds": [
-        2
-      ],
-      "memberIds": [
-        1,
-        3
-      ],
-      "teamIds": [
-        1
-      ],
-      "createdAt": "2025-01-10T10:00:00Z",
-      "updatedAt": "2025-01-10T10:00:00Z"
+      "updatedAt": "2026-01-06T14:27:42.550Z"
     },
     {
       "id": 3,
       "name": "Web Banking App",
       "description": "Banking app MVP for WEB",
-      "status": "completed",
+      "teamIds": [1,2],
       "adminIds": [
         2
       ],
-      "memberIds": [],
-      "teamIds": [],
+      "memberIds": [1,2],
+      "status": "completed",
+      "posts": [
+        1,
+        2,
+        3
+      ],
       "createdAt": "2025-01-10T10:00:00Z",
-      "updatedAt": "2025-01-10T10:00:00Z"
+      "updatedAt": "2026-01-06T14:30:19.423Z"
     }
   ],
   "tasks": [

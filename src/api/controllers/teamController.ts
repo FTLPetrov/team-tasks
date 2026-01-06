@@ -41,7 +41,7 @@ export const useCreateTeam = () => {
   });
 };
 
-export const useUpdateTeam = (teamId: string) => {
+export const useUpdateTeam = (teamId: number) => {
   return useMutation({
     mutationFn: async (team: Partial<Team>) => {
       const response = await axiosClient.put(`/teams/${teamId}`, team);

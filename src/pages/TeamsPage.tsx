@@ -1,4 +1,4 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Button, Stack, Typography } from "@mui/material";
 import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 
 import {
@@ -9,11 +9,8 @@ import {
 } from "../api/controllers/teamController";
 import type { Team } from "../api/types/teamTypes";
 import { useGetAllUsers } from "../api/controllers/userController";
-import { CreateTeamButton } from "../components/team/CreateTeamButton";
-import { EditTeamButton } from "../components/team/EditTeamButton";
 import { useState } from "react";
 import { TeamCreateAndEditDialog } from "../components/team/TeamCreateAndEditDialog";
-import { DeleteTeamButton } from "../components/team/DeleteTeamButton";
 import { DeleteTeamDialog } from "../components/team/DeleteTeamDialog";
 import { useAuth } from "../auth/AuthProvider";
 import dayjs from "dayjs";
@@ -32,13 +29,13 @@ export const TeamsPage = () => {
 
   const [createOpen, setCreateOpen] = useState(false);
   const [editTeam, setEditTeam] = useState<Team | null>(null);
-  const [deleteTeam, setDeleteTeam] = useState<Team | null>(null);
+  const [deleteTeamById, setDeleteTeamById] = useState<number | null>(null);
 
   const createTeamMutation = useCreateTeam();
   const updateTeamMutation = useUpdateTeam(
-    editTeam?.id ? String(editTeam.id) : ""
+    editTeam?.id ?? 0
   );
-  const deleteTeamMutation = useDeleteTeam(deleteTeam?.id ?? 0);
+  const deleteTeamMutation = useDeleteTeam(deleteTeamById ?? 0);
 
   const rows: Team[] = visibleTeams ?? [];
 
@@ -79,9 +76,28 @@ export const TeamsPage = () => {
 
         if (team.owner === currentUserId || user?.isAdmin) {
           return (
-            <Stack direction={"row"} spacing={1}>
-              <EditTeamButton onClick={() => setEditTeam(team)} />
-              <DeleteTeamButton onClick={() => setDeleteTeam(team)} />
+            <Stack
+              direction={"row"}
+              spacing={1}
+              justifyContent="center"
+              alignItems="center"
+              sx={{ height: "100%", width: "100%" }}
+            >
+              <Button
+                size="small"
+                variant="contained"
+                onClick={() => setEditTeam(team)}
+              >
+                Edit
+              </Button>
+              <Button
+                size="small"
+                color="error"
+                variant="contained"
+                onClick={() => setDeleteTeamById(team.id)}
+              >
+                Delete
+              </Button>
             </Stack>
           );
         }
@@ -117,10 +133,10 @@ export const TeamsPage = () => {
   };
 
   const handleDeleteConfirm = async () => {
-    if (!deleteTeam) return;
+    if (!deleteTeamById) return;
 
     await deleteTeamMutation.mutateAsync();
-    setDeleteTeam(null);
+    setDeleteTeamById(null);
   };
 
   return (
@@ -128,7 +144,9 @@ export const TeamsPage = () => {
       <Typography>Teams</Typography>
 
       <Stack direction="row" justifyContent="flex-start" sx={{ mb: 2 }}>
-        <CreateTeamButton onClick={() => setCreateOpen(true)} />
+        <Button variant="contained" onClick={() => setCreateOpen(true)}>
+          Create team
+        </Button>
       </Stack>
 
       <Box sx={{ height: 520, width: "100%" }}>
@@ -156,10 +174,10 @@ export const TeamsPage = () => {
         />
 
         <DeleteTeamDialog
-          open={deleteTeam !== null}
-          team={deleteTeam}
+          open={deleteTeamById !== null}
+          team={teams?.find((t) => t.id === deleteTeamById)}
           loading={deleteTeamMutation.isPending}
-          onClose={() => setDeleteTeam(null)}
+          onClose={() => setDeleteTeamById(null)}
           onConfirm={handleDeleteConfirm}
         />
       </Box>

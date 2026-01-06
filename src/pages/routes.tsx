@@ -7,6 +7,8 @@ import { RegisterPage } from "./RegisterPage";
 import { LoginPage } from "./LoginPage";
 import { UserProfilePage } from "./UserProfilePage";
 import { ProtectedRoute } from "../components/auth/ProtectedRoute";
+import { ProjectsPage } from "./ProjectsPage";
+import { ProjectDetailsPage } from "./ProjectDetailsPage";
 
 export const routes: RouteObject[] = [
   {
@@ -29,6 +31,14 @@ export const routes: RouteObject[] = [
       {
         path: "/users/:id",
         element: <UserProfilePage />,
+      },
+      {
+        path: "/projects",
+        element: <ProjectsPage />,
+      },
+      {
+        path: "projects/:id",
+        element: <ProjectDetailsPage />,
       },
     ],
   },

@@ -6,19 +6,19 @@ import {
   DialogTitle,
   Typography,
 } from "@mui/material";
-import type { Team } from "../../api/types/teamTypes";
+import type { Project } from "../../api/types/projectTypes";
 
 type Props = {
   open: boolean;
-  team?: Team | null;
+  project?: Project | null;
   loading?: boolean;
   onClose: () => void;
   onConfirm: () => void;
 };
 
-export const DeleteTeamDialog = ({
+export const DeleteProjectDialog = ({
   open,
-  team,
+  project,
   loading,
   onClose,
   onConfirm,
@@ -30,12 +30,12 @@ export const DeleteTeamDialog = ({
       fullWidth
       maxWidth="xs"
     >
-      <DialogTitle>Delete team</DialogTitle>
+      <DialogTitle>Delete Project</DialogTitle>
 
       <DialogContent>
         <Typography>
           Are you sure you want to delete{" "}
-          <strong>{team?.name ?? "this team"}</strong>?
+          <strong>{project?.name ?? "this project"}</strong>
         </Typography>
       </DialogContent>
 
