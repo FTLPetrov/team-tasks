@@ -19,6 +19,7 @@ import {
   validateName,
   validateEmail,
 } from "../utils/validation";
+import { Checkbox, FormControlLabel } from "@mui/material";
 
 type RegisterFormValues = {
   firstName: string;
@@ -27,6 +28,7 @@ type RegisterFormValues = {
   displayName: string;
   password: string;
   confirmPassword: string;
+  isAdmin: boolean;
 };
 
 export const RegisterPage = () => {
@@ -34,6 +36,8 @@ export const RegisterPage = () => {
   const navigate = useNavigate();
   const { data: users } = useGetAllUsers();
   const createUserMutation = useCreateUser();
+
+  
 
   useEffect(() => {
     if (user) {
@@ -49,7 +53,11 @@ export const RegisterPage = () => {
     formState: { errors, isValid, isSubmitting },
   } = useForm<RegisterFormValues>({
     mode: "onChange",
+    defaultValues: {
+      isAdmin: false,
+    },
   });
+  const { ref: isAdminRef, ...isAdminField } = register("isAdmin");
 
   const password = watch("password");
 
@@ -78,6 +86,7 @@ export const RegisterPage = () => {
       secret: data.password,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
+      isAdmin: data.isAdmin,
     };
 
     await createUserMutation.mutateAsync(userData);
@@ -180,6 +189,12 @@ export const RegisterPage = () => {
                   })}
                   error={!!errors.confirmPassword}
                   helperText={errors.confirmPassword?.message}
+                />
+              </Grid>
+              <Grid size={{ xs: 12 }}>
+                <FormControlLabel
+                  label="Register as admin"
+                  control={<Checkbox inputRef={isAdminRef} {...isAdminField} />}
                 />
               </Grid>
               <Grid size={{ xs: 12 }}>

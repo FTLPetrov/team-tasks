@@ -15,20 +15,32 @@ import { useState } from "react";
 import { TeamCreateAndEditDialog } from "../components/team/TeamCreateAndEditDialog";
 import { DeleteTeamButton } from "../components/team/DeleteTeamButton";
 import { DeleteTeamDialog } from "../components/team/DeleteTeamDialog";
+import { useAuth } from "../auth/AuthProvider";
+import dayjs from "dayjs";
 
 export const TeamsPage = () => {
   const { data: teams, isLoading } = useGetAllTeams();
   const { data: users } = useGetAllUsers();
+  const { user } = useAuth();
+  const currentUserId = user?.id;
+
+  const visibleTeams = teams?.filter((t) => {
+    if (!currentUserId) return false;
+    if (user?.isAdmin) return true;
+    return t.owner === currentUserId || t.users.includes(currentUserId);
+  });
 
   const [createOpen, setCreateOpen] = useState(false);
   const [editTeam, setEditTeam] = useState<Team | null>(null);
   const [deleteTeam, setDeleteTeam] = useState<Team | null>(null);
 
   const createTeamMutation = useCreateTeam();
-  const updateTeamMutation = useUpdateTeam(editTeam?.id ?? 0);
+  const updateTeamMutation = useUpdateTeam(
+    editTeam?.id ? String(editTeam.id) : ""
+  );
   const deleteTeamMutation = useDeleteTeam(deleteTeam?.id ?? 0);
 
-  const rows: Team[] = teams ?? [];
+  const rows: Team[] = visibleTeams ?? [];
 
   const columns: GridColDef<Team>[] = [
     { field: "id", headerName: "ID", width: 90 },
@@ -46,11 +58,15 @@ export const TeamsPage = () => {
       field: "createdAt",
       headerName: "Created At",
       flex: 1,
+      valueGetter: (_value, row) =>
+        dayjs(row.createdAt).format("YYYY-MM-DD HH:mm"),
     },
     {
       field: "updatedAt",
       headerName: "Updated At",
       flex: 1,
+      valueGetter: (_value, row) =>
+        dayjs(row.updatedAt).format("YYYY-MM-DD HH:mm"),
     },
     {
       field: "actions",
@@ -61,12 +77,14 @@ export const TeamsPage = () => {
       renderCell: (params) => {
         const team = params.row;
 
-        return (
-          <Stack direction={"row"} spacing={1}>
-            <EditTeamButton onClick={() => setEditTeam(team)} />
-            <DeleteTeamButton onClick={() => setDeleteTeam(team)} />
-          </Stack>
-        );
+        if (team.owner === currentUserId || user?.isAdmin) {
+          return (
+            <Stack direction={"row"} spacing={1}>
+              <EditTeamButton onClick={() => setEditTeam(team)} />
+              <DeleteTeamButton onClick={() => setDeleteTeam(team)} />
+            </Stack>
+          );
+        }
       },
     },
   ];
@@ -74,19 +92,28 @@ export const TeamsPage = () => {
   const handleSubmit = async (payload: { name: string; userIds: number[] }) => {
     if (editTeam) {
       await updateTeamMutation.mutateAsync({
-        name: payload.name,
+        id: editTeam.id,
+        name: payload.name.trim(),
         users: payload.userIds,
+        owner: editTeam.owner,
+        createdAt: editTeam.createdAt,
+        updatedAt: new Date().toISOString(),
       } satisfies Partial<Team>);
 
       setEditTeam(null);
-    } else {
-      await createTeamMutation.mutateAsync({
-        name: payload.name,
-        users: payload.userIds,
-      } satisfies Partial<Team>);
-
-      setCreateOpen(false);
+      return;
     }
+    if (!currentUserId) return;
+
+    await createTeamMutation.mutateAsync({
+      name: payload.name.trim(),
+      users: payload.userIds,
+      owner: currentUserId,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    } satisfies Partial<Team>);
+
+    setCreateOpen(false);
   };
 
   const handleDeleteConfirm = async () => {

@@ -25,47 +25,42 @@ export const useGetTeamById = (teamId: number) => {
       const { data } = await axiosClient.get<Team>(`/teams/${teamId}`);
       return data;
     },
-    });
+  });
 };
 
 export const useCreateTeam = () => {
   return useMutation({
     mutationFn: async (team: Partial<Team>) => {
-      const response = await axiosClient.post<Team>("/teams", team);
+      const response = await axiosClient.post("/teams", team);
+
       return response.data;
     },
     onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: teamKeys.allTeams });
+      queryClient.invalidateQueries({ queryKey: teamKeys.allTeams });
     },
   });
 };
 
-export const useUpdateTeam = (teamId: number) => {
+export const useUpdateTeam = (teamId: string) => {
   return useMutation({
     mutationFn: async (team: Partial<Team>) => {
-        const currentTeam = await axiosClient.get<Team>(`/teams/${teamId}`);
-        const response = await axiosClient.put<Team>(`/teams/${teamId}`, {
-            ...currentTeam.data,
-            ...team,
-            createdAt: currentTeam.data.createdAt,
-            updatedAt: new Date().toISOString(),
-        });
-        return response.data;
+      const response = await axiosClient.put(`/teams/${teamId}`, team);
+
+      return response.data;
     },
     onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: teamKeys.teamDetails(teamId) });
-        queryClient.invalidateQueries({ queryKey: teamKeys.allTeams });
+      queryClient.invalidateQueries({ queryKey: teamKeys.allTeams });
     },
-    });
+  });
 };
 
 export const useDeleteTeam = (teamId: number) => {
   return useMutation({
     mutationFn: async () => {
-         await axiosClient.delete<void>(`/teams/${teamId}`);
+      await axiosClient.delete<void>(`/teams/${teamId}`);
     },
     onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: teamKeys.allTeams });
+      queryClient.invalidateQueries({ queryKey: teamKeys.allTeams });
     },
   });
 };
