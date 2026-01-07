@@ -90,7 +90,7 @@ export const ProjectCreateAndEditDialog = ({
       setSelectedAdmins([]);
       setSelectedMembers([]);
       setStatus(ProjectStatus.ACTIVE);
-      setSelectedPosts([]); // i tuka trbva
+      setSelectedPosts([]);
       return;
     }
 

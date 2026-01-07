@@ -103,11 +103,17 @@
       "id": 3,
       "name": "Web Banking App",
       "description": "Banking app MVP for WEB",
-      "teamIds": [1,2],
+      "teamIds": [
+        1,
+        2
+      ],
       "adminIds": [
         2
       ],
-      "memberIds": [1,2],
+      "memberIds": [
+        1,
+        2
+      ],
       "status": "completed",
       "posts": [
         1,
@@ -121,17 +127,17 @@
   "tasks": [
     {
       "id": 1,
+      "projectId": 1,
       "title": "Create initial wireframes",
       "description": "Basic screens for dashboard",
-      "status": "todo",
-      "priority": "low",
-      "projectId": 1,
+      "status": "Todo",
+      "priority": "Low",
       "assignedUserId": 2,
       "createdAt": "2025-01-10T10:00:00Z",
-      "updatedAt": "2025-01-10T10:00:00Z"
+      "updatedAt": "2026-01-07T11:25:03.639Z"
     },
     {
-      "id": 2,
+      "id": 3,
       "title": "Implement login page",
       "description": "Basic email/password form",
       "status": "in-progress",
@@ -142,15 +148,285 @@
       "updatedAt": "2025-01-10T10:00:00Z"
     },
     {
-      "id": 3,
-      "title": "API Integration",
-      "description": "Connect axios to json-server",
-      "status": "todo",
-      "priority": "medium",
-      "projectId": 2,
-      "assignedUserId": 3,
+      "id": 4,
+      "title": "Implement login page",
+      "description": "Basic email/password form",
+      "status": "in-progress",
+      "priority": "high",
+      "projectId": 1,
+      "assignedUserId": 1,
       "createdAt": "2025-01-10T10:00:00Z",
       "updatedAt": "2025-01-10T10:00:00Z"
+    },
+    {
+      "id": 5,
+      "title": "Implement login page",
+      "description": "Basic email/password form",
+      "status": "in-progress",
+      "priority": "high",
+      "projectId": 1,
+      "assignedUserId": 1,
+      "createdAt": "2025-01-10T10:00:00Z",
+      "updatedAt": "2025-01-10T10:00:00Z"
+    },
+    {
+      "id": 7,
+      "title": "Implement login page",
+      "description": "Basic email/password form",
+      "status": "in-progress",
+      "priority": "high",
+      "projectId": 1,
+      "assignedUserId": 1,
+      "createdAt": "2025-01-10T10:00:00Z",
+      "updatedAt": "2025-01-10T10:00:00Z"
+    },
+    {
+      "id": 8,
+      "title": "Implement login page",
+      "description": "Basic email/password form",
+      "status": "in-progress",
+      "priority": "high",
+      "projectId": 1,
+      "assignedUserId": 1,
+      "createdAt": "2025-01-10T10:00:00Z",
+      "updatedAt": "2025-01-10T10:00:00Z"
+    },
+    {
+      "id": 9,
+      "title": "Implement login page",
+      "description": "Basic email/password form",
+      "status": "in-progress",
+      "priority": "high",
+      "projectId": 1,
+      "assignedUserId": 1,
+      "createdAt": "2025-01-10T10:00:00Z",
+      "updatedAt": "2025-01-10T10:00:00Z"
+    },
+    {
+      "id": 10,
+      "title": "Implement login page",
+      "description": "Basic email/password form",
+      "status": "in-progress",
+      "priority": "high",
+      "projectId": 1,
+      "assignedUserId": 1,
+      "createdAt": "2025-01-10T10:00:00Z",
+      "updatedAt": "2025-01-10T10:00:00Z"
+    },
+    {
+      "id": 11,
+      "title": "Implement login page",
+      "description": "Basic email/password form",
+      "status": "in-progress",
+      "priority": "high",
+      "projectId": 1,
+      "assignedUserId": 1,
+      "createdAt": "2025-01-10T10:00:00Z",
+      "updatedAt": "2025-01-10T10:00:00Z"
+    },
+    {
+      "id": 12,
+      "title": "Implement login page",
+      "description": "Basic email/password form",
+      "status": "in-progress",
+      "priority": "high",
+      "projectId": 1,
+      "assignedUserId": 1,
+      "createdAt": "2025-01-10T10:00:00Z",
+      "updatedAt": "2025-01-10T10:00:00Z"
+    },
+    {
+      "id": 13,
+      "title": "Implement login page",
+      "description": "Basic email/password form",
+      "status": "in-progress",
+      "priority": "high",
+      "projectId": 1,
+      "assignedUserId": 1,
+      "createdAt": "2025-01-10T10:00:00Z",
+      "updatedAt": "2025-01-10T10:00:00Z"
+    },
+    {
+      "id": 14,
+      "title": "Implement login page",
+      "description": "Basic email/password form",
+      "status": "in-progress",
+      "priority": "high",
+      "projectId": 1,
+      "assignedUserId": 1,
+      "createdAt": "2025-01-10T10:00:00Z",
+      "updatedAt": "2025-01-10T10:00:00Z"
+    },
+    {
+      "id": 15,
+      "title": "Implement login page",
+      "description": "Basic email/password form",
+      "status": "in-progress",
+      "priority": "high",
+      "projectId": 1,
+      "assignedUserId": 1,
+      "createdAt": "2025-01-10T10:00:00Z",
+      "updatedAt": "2025-01-10T10:00:00Z"
+    },
+    {
+      "id": 17,
+      "projectId": 1,
+      "title": "Test with date",
+      "description": "lets see",
+      "status": "Comleted",
+      "priority": "Low",
+      "assignedUserId": 4,
+      "dueDate": "2026-01-08T21:59:59.999Z",
+      "startDate": "2026-01-07T11:55:12.856Z",
+      "completedAt": "2026-01-07T12:02:17.771Z",
+      "createdAt": "2026-01-07T11:55:12.856Z",
+      "updatedAt": "2026-01-07T12:02:17.772Z"
+    },
+    {
+      "id": 18,
+      "projectId": 1,
+      "title": "qwer",
+      "description": "qer",
+      "status": "Comleted",
+      "priority": "Medium",
+      "assignedUserId": 1,
+      "dueDate": "2026-01-06T21:59:59.999Z",
+      "startDate": "2026-01-07T12:02:39.869Z",
+      "completedAt": "2026-01-07T12:08:48.061Z",
+      "createdAt": "2026-01-07T12:02:39.869Z",
+      "updatedAt": "2026-01-07T12:08:48.061Z"
+    },
+    {
+      "id": 19,
+      "projectId": 1,
+      "title": "Test",
+      "description": "tesqtqwercs",
+      "status": "Comleted",
+      "priority": "Medium",
+      "assignedUserId": 1,
+      "dueDate": "2026-01-08T22:00:00.000Z",
+      "startDate": "2026-01-07T13:45:53.938Z",
+      "completedAt": "2026-01-07T13:46:07.577Z",
+      "createdAt": "2026-01-07T13:45:53.938Z",
+      "updatedAt": "2026-01-07T13:46:07.577Z"
+    },
+    {
+      "id": 20,
+      "projectId": 1,
+      "title": "Promenih go be",
+      "description": "qwerqwerqwer",
+      "status": "Comleted",
+      "priority": "Low",
+      "assignedUserId": 1,
+      "dueDate": "2026-01-04T22:00:00.000Z",
+      "startDate": "2026-01-07T13:46:32.501Z",
+      "completedAt": "2026-01-07T15:29:32.639Z",
+      "createdAt": "2026-01-07T13:46:32.501Z",
+      "updatedAt": "2026-01-07T15:29:32.639Z"
+    }
+  ],
+  "taskHistory": [
+    {
+      "id": 1,
+      "taskId": 17,
+      "createdAt": "2026-01-07T12:03:00.000Z",
+      "createdBy": 4,
+      "beforeSnapshot": {
+        "id": 17,
+        "projectId": 1,
+        "title": "Test with date",
+        "description": "lets see",
+        "status": "In-progress",
+        "priority": "Low",
+        "assignedUserId": 4,
+        "createdAt": "2026-01-07T11:55:12.856Z",
+        "updatedAt": "2026-01-07T11:59:59.000Z",
+        "startDate": "2026-01-07T11:55:12.856Z",
+        "dueDate": "2026-01-08T21:59:59.999Z",
+        "completedAt": null
+      },
+      "afterSnapshot": {
+        "id": 17,
+        "projectId": 1,
+        "title": "Test with date",
+        "description": "lets see",
+        "status": "Comleted",
+        "priority": "Low",
+        "assignedUserId": 4,
+        "createdAt": "2026-01-07T11:55:12.856Z",
+        "updatedAt": "2026-01-07T12:02:17.772Z",
+        "startDate": "2026-01-07T11:55:12.856Z",
+        "dueDate": "2026-01-08T21:59:59.999Z",
+        "completedAt": "2026-01-07T12:02:17.771Z"
+      },
+      "diff": [
+        {
+          "field": "status",
+          "previousValue": "In-progress",
+          "nextValue": "Comleted"
+        },
+        {
+          "field": "completedAt",
+          "previousValue": null,
+          "nextValue": "2026-01-07T12:02:17.771Z"
+        },
+        {
+          "field": "updatedAt",
+          "previousValue": "2026-01-07T11:59:59.000Z",
+          "nextValue": "2026-01-07T12:02:17.772Z"
+        }
+      ]
+    },
+    {
+      "taskId": 20,
+      "createdAt": "2026-01-07T15:29:32.639Z",
+      "createdBy": 1,
+      "beforeSnapshot": {
+        "id": 20,
+        "projectId": 1,
+        "title": "qwerqwer",
+        "description": "qwerqwerqwer",
+        "status": "Comleted",
+        "priority": "Low",
+        "assignedUserId": 1,
+        "dueDate": "2026-01-04T22:00:00.000Z",
+        "startDate": "2026-01-07T13:46:32.501Z",
+        "completedAt": "2026-01-07T13:46:54.970Z",
+        "createdAt": "2026-01-07T13:46:32.501Z",
+        "updatedAt": "2026-01-07T13:46:54.970Z"
+      },
+      "afterSnapshot": {
+        "id": 20,
+        "projectId": 1,
+        "title": "Promenih go be",
+        "description": "qwerqwerqwer",
+        "status": "Comleted",
+        "priority": "Low",
+        "assignedUserId": 1,
+        "dueDate": "2026-01-04T22:00:00.000Z",
+        "startDate": "2026-01-07T13:46:32.501Z",
+        "completedAt": "2026-01-07T15:29:32.639Z",
+        "createdAt": "2026-01-07T13:46:32.501Z",
+        "updatedAt": "2026-01-07T15:29:32.639Z"
+      },
+      "diff": [
+        {
+          "field": "title",
+          "previousValue": "qwerqwer",
+          "nextValue": "Promenih go be"
+        },
+        {
+          "field": "completedAt",
+          "previousValue": "2026-01-07T13:46:54.970Z",
+          "nextValue": "2026-01-07T15:29:32.639Z"
+        },
+        {
+          "field": "updatedAt",
+          "previousValue": "2026-01-07T13:46:54.970Z",
+          "nextValue": "2026-01-07T15:29:32.639Z"
+        }
+      ],
+      "id": 2
     }
   ]
 }
