@@ -9,7 +9,7 @@ type Props = {
   onEditTask?: (task: Task) => void;
   onDeleteTask?: (task: Task) => void;
   onCreateTask?: () => void;
-  showHistory?: () => void;
+  showHistory?: (task: Task) => void;
 };
 
 export const TaskSectionView = ({
@@ -199,7 +199,7 @@ export const TaskSectionView = ({
                             size="small"
                             color="secondary"
                             sx={{ minWidth: 110 }}
-                            onClick={() => showHistory?.()}
+                            onClick={() => showHistory?.(task)}
                           >
                             History
                           </Button>

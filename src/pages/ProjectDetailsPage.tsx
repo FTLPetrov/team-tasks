@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useGetProjectById } from "../api/controllers/projectController";
-import { Box, Grid, Paper, Typography } from "@mui/material";
+import { Box, Grid, Paper, Snackbar, Typography } from "@mui/material";
 import { useGetAllComments } from "../api/controllers/commentController";
 import dayjs from "dayjs";
 import { useGetAllPosts } from "../api/controllers/postController";
@@ -11,7 +11,11 @@ import {
   useUpdateTask,
   useDeleteTask,
 } from "../api/controllers/taskController";
-import { TaskStatus, type Task, type TaskHistoryEntry } from "../api/types/taskTypes";
+import {
+  TaskStatus,
+  type Task,
+  type TaskHistoryEntry,
+} from "../api/types/taskTypes";
 import { TaskSectionView } from "../components/task/TaskSectionView";
 import {
   TaskCreateAndEditDialog,
@@ -21,6 +25,7 @@ import { DeleteTaskDialog } from "../components/task/DeleteTaskDialog";
 import { useState } from "react";
 import { useAuth } from "../auth/AuthProvider";
 import { useCreateTaskHistory } from "../api/controllers/taskHistoryController";
+import { TaskHistoryDialog } from "../components/task/TaskHistoryDialog";
 
 export const ProjectDetailsPage = () => {
   const { user: authUser } = useAuth();
@@ -37,7 +42,9 @@ export const ProjectDetailsPage = () => {
   const updateTaskMutation = useUpdateTask(taskBeingEdited?.id ?? 0);
   const deleteTaskMutation = useDeleteTask(taskBeingDeleted?.id ?? 0);
   const createTaskHistory = useCreateTaskHistory();
-  const [historyDialogOpen, setHistoryDialogOpen] = useState(false)
+  const [historyDialogOpen, setHistoryDialogOpen] = useState(false);
+  const [taskForHistory, setTaskForHistory] = useState<Task | null>(null);
+  const [taskChangeToastOpen, setTaskChangeToastOpen] = useState(false);
 
   const normalizeDueDate = (value: string) => {
     const parsed = dayjs(value);
@@ -72,6 +79,10 @@ export const ProjectDetailsPage = () => {
 
     await deleteTaskMutation.mutateAsync();
     setTaskBeingDeleted(null);
+  };
+
+  const handleCloseTaskChangeToast = () => {
+    setTaskChangeToastOpen(false);
   };
 
   const handleTaskSubmit = async (payload: TaskDialogFormValues) => {
@@ -137,16 +148,20 @@ export const ProjectDetailsPage = () => {
         diff,
       });
     }
+    setTaskChangeToastOpen(true);
 
     handleCloseTaskDialog();
   };
 
-  const handleOpenHistoryDialog = () =>{
-    setHistoryDialogOpen(true)
+  const handleOpenHistoryDialog = (task: Task) => {
+    setTaskForHistory(task);
+    setHistoryDialogOpen(true);
+  };
 
-    return
-  }
-  
+  const handleCloseHistoryDialog = () => {
+    setHistoryDialogOpen(false);
+    setTaskForHistory(null);
+  };
 
   const filteredComments = comments?.filter((c) =>
     project?.posts?.includes(c.postId)
@@ -242,6 +257,19 @@ export const ProjectDetailsPage = () => {
           loading={deleteTaskMutation.isPending}
           onClose={handleCloseDeleteDialog}
           onConfirm={handleDeleteTask}
+        />
+
+        <TaskHistoryDialog
+          open={historyDialogOpen}
+          onClose={handleCloseHistoryDialog}
+          task={taskForHistory}
+        />
+
+        <Snackbar
+          open={taskChangeToastOpen}
+          autoHideDuration={6000}
+          onClose={handleCloseTaskChangeToast}
+          message="Change saved successfully"
         />
 
         <Box sx={{ mt: 2, p: 2, border: 1, borderRadius: 4 }}>

@@ -953,6 +953,57 @@
         }
       ],
       "id": 13
+    },
+    {
+      "taskId": 1,
+      "createdAt": "2026-01-08T09:07:54.396Z",
+      "createdBy": 4,
+      "beforeSnapshot": {
+        "id": 1,
+        "projectId": 1,
+        "title": "Create initial wireframes",
+        "description": "Basic screens for dashboard",
+        "status": "Todo",
+        "priority": "Low",
+        "assignedUserId": 2,
+        "createdAt": "2025-01-10T10:00:00Z",
+        "updatedAt": "2026-01-08T09:07:44.748Z",
+        "dueDate": "2026-01-14T22:00:00.000Z",
+        "startDate": null,
+        "completedAt": null
+      },
+      "afterSnapshot": {
+        "id": 1,
+        "projectId": 1,
+        "title": "Create initial wireframes",
+        "description": "Basic screens for dashboard",
+        "status": "In-progress",
+        "priority": "Low",
+        "assignedUserId": 2,
+        "createdAt": "2025-01-10T10:00:00Z",
+        "updatedAt": "2026-01-08T09:07:54.396Z",
+        "dueDate": "2026-01-14T22:00:00.000Z",
+        "startDate": "2026-01-08T09:07:54.396Z",
+        "completedAt": null
+      },
+      "diff": [
+        {
+          "field": "status",
+          "previousValue": "Todo",
+          "nextValue": "In-progress"
+        },
+        {
+          "field": "startDate",
+          "previousValue": null,
+          "nextValue": "2026-01-08T09:07:54.396Z"
+        },
+        {
+          "field": "updatedAt",
+          "previousValue": "2026-01-08T09:07:44.748Z",
+          "nextValue": "2026-01-08T09:07:54.396Z"
+        }
+      ],
+      "id": 14
     }
   ]
 }
