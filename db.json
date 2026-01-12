@@ -4,8 +4,7 @@
       "id": 1,
       "name": "Team Marvin",
       "users": [
-        2,
-        1
+        2
       ],
       "createdAt": "2025-01-10T10:00:00Z",
       "updatedAt": "2025-01-10T10:00:00Z",
@@ -41,17 +40,6 @@
   ],
   "users": [
     {
-      "id": 1,
-      "firstName": "Alice",
-      "lastName": "Johnson",
-      "email": "alice@example.com",
-      "displayName": "Alice Johnson",
-      "secret": "Alice1234!",
-      "createdAt": "2026-01-09T13:26:57.595Z",
-      "updatedAt": "2026-01-09T15:13:14.323Z",
-      "isAdmin": true
-    },
-    {
       "firstName": "Test",
       "lastName": "Test",
       "email": "test@gmail.com",
@@ -59,7 +47,7 @@
       "secret": "Test123456!",
       "createdAt": "2026-01-06T08:13:56.190Z",
       "updatedAt": "2026-01-06T08:13:56.191Z",
-      "isAdmin": true,
+      "isAdmin": false,
       "id": 4
     },
     {

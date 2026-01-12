@@ -2,10 +2,9 @@ import { Button, Grid, Paper, Typography } from "@mui/material";
 import type { User } from "../../api/types/userTypes";
 import type { Team } from "../../api/types/teamTypes";
 import type { Project } from "../../api/types/projectTypes";
-import {
-  useDeleteUser,
-} from "../../api/controllers/userController";
+import { useDeleteUser } from "../../api/controllers/userController";
 import { usePatchTeamUsers } from "../../api/controllers/teamController";
+import { usePatchProjectMembers } from "../../api/controllers/projectController";
 
 type UserCardViewProps = {
   user: User;
@@ -21,8 +20,8 @@ export const UserCardView = ({
   onEdit,
 }: UserCardViewProps) => {
   const deleteUserMutation = useDeleteUser(user.id);
-  const updateTeamMembers = usePatchTeamUsers()
-  const 
+  const updateTeamMembers = usePatchTeamUsers();
+  const updateProjectMembers = usePatchProjectMembers();
 
   const assignedTeams = teams.filter((team) => team.users.includes(user.id));
   const assignedProjects = projects.filter((project) =>
@@ -30,11 +29,22 @@ export const UserCardView = ({
   );
 
   const handleDelete = async () => {
-    console.log("hi")
+    console.log("hi");
     await deleteUserMutation.mutateAsync();
 
-    ...
-    await updateTeamMembers.mutateAsync()
+    assignedTeams.map(async (t) => {
+      updateTeamMembers.mutateAsync({
+        teamId: t.id,
+        users: t.users.filter((id) => id !== user.id),
+      });
+    });
+
+    assignedProjects.map(async (p) => {
+      updateProjectMembers.mutateAsync({
+        projectId: p.id,
+        memberIds: p.memberIds.filter((id) => id !== p.id),
+      });
+    });
   };
 
   return (
