@@ -13,6 +13,13 @@ const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
 const STORAGE_KEY = "auth_user";
 
+const normalizeUser = (raw: User): User => {
+  return {
+    ...raw,
+    isAdmin: raw.isAdmin === true,
+  };
+};
+
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -21,7 +28,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const storedUser = localStorage.getItem(STORAGE_KEY);
     if (storedUser) {
       try {
-        setUser(JSON.parse(storedUser));
+        setUser(normalizeUser(JSON.parse(storedUser)));
       } catch {
         localStorage.removeItem(STORAGE_KEY);
       }
@@ -43,10 +50,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       throw new Error("Invalid email or password");
     }
 
-    setUser(foundUser);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(foundUser));
+    const normalizedUser = normalizeUser(foundUser);
 
-    return foundUser;
+    setUser(normalizedUser);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(normalizedUser));
+
+    return normalizedUser;
   };
 
   const logOut = () => {

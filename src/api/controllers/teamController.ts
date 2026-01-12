@@ -1,7 +1,13 @@
+import axios from "axios";
 import { axiosClient } from "../../config/axios.config";
 import { queryClient } from "../../config/queryClient.config";
 import type { Team } from "../types/teamTypes";
 import { useQuery, useMutation } from "@tanstack/react-query";
+
+type PatchTeamUsersInput = {
+  teamId: number;
+  users: Team["users"];
+};
 
 export const teamKeys = {
   allTeams: ["allTeams"],
@@ -58,6 +64,18 @@ export const useDeleteTeam = (teamId: number) => {
   return useMutation({
     mutationFn: async () => {
       await axiosClient.delete<void>(`/teams/${teamId}`);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: teamKeys.allTeams });
+    },
+  });
+};
+
+export const usePatchTeamUsers = () => {
+  return useMutation({
+    mutationFn: async ({ teamId, users }: PatchTeamUsersInput) => {
+      const response = await axiosClient.patch(`/teams/${teamId}`, { users });
+      return response.data;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: teamKeys.allTeams });

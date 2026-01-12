@@ -9,6 +9,8 @@ import { UserProfilePage } from "./UserProfilePage";
 import { ProtectedRoute } from "../components/auth/ProtectedRoute";
 import { ProjectsPage } from "./ProjectsPage";
 import { ProjectDetailsPage } from "./ProjectDetailsPage";
+import { UsersPage } from "./UsersPage";
+import { UnauthorizedPage } from "./UnauthorizedPage";
 
 export const routes: RouteObject[] = [
   {
@@ -39,6 +41,18 @@ export const routes: RouteObject[] = [
       {
         path: "projects/:id",
         element: <ProjectDetailsPage />,
+      },
+      {
+        path: "/users",
+        element: (
+          <ProtectedRoute requireAdmin={true}>
+            <UsersPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/unauthorized",
+        element: <UnauthorizedPage />,
       },
     ],
   },

@@ -10,7 +10,7 @@ export const userKeys = {
 
 export const useGetAllUsers = () => {
   return useQuery<User[]>({
-    queryKey: [userKeys.allUsers],
+    queryKey: userKeys.allUsers,
     queryFn: async () => {
       const { data } = await axiosClient.get<User[]>(`/users`);
       return data;

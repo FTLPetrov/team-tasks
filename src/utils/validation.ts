@@ -23,6 +23,11 @@ export const validateName = (name: string): string | true => {
   if (trimmed.length < 2) {
     return "Name must be at least 2 characters long";
   }
+
+  if (!/^[A-Z]/.test(trimmed)) {
+    return "Name must start with a capital letter";
+  }
+
   if (!/^[a-zA-Z\s'-]+$/.test(trimmed)) {
     return "Name can only contain letters, spaces, hyphens, and apostrophes";
   }

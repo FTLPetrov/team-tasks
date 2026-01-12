@@ -3,6 +3,11 @@ import type { Project } from "../types/projectTypes";
 import { axiosClient } from "../../config/axios.config";
 import { queryClient } from "../../config/queryClient.config";
 
+type PatchTeamUsersInput = {
+  projectId: number;
+  memberIds: Project["memberIds"];
+};
+
 export const projectKeys = {
   allProjects: ["allProjects"],
   projectDetails: (id: number) => [
@@ -61,6 +66,20 @@ export const useDeleteProject = (projectId: number) => {
   return useMutation({
     mutationFn: async () => {
       const response = await axiosClient.delete(`/projects/${projectId}`);
+      return response.data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: projectKeys.allProjects });
+    },
+  });
+};
+
+export const usePatchProjectMembers = () => {
+  return useMutation({
+    mutationFn: async ({ projectId, memberIds }: PatchTeamUsersInput) => {
+      const response = await axiosClient.patch(`/projects/${projectId}`, {
+        memberIds,
+      });
       return response.data;
     },
     onSuccess: () => {

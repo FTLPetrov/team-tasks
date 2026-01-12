@@ -4,8 +4,8 @@
       "id": 1,
       "name": "Team Marvin",
       "users": [
-        1,
-        2
+        2,
+        1
       ],
       "createdAt": "2025-01-10T10:00:00Z",
       "updatedAt": "2025-01-10T10:00:00Z",
@@ -16,14 +16,14 @@
       "name": "Team Quark",
       "users": [],
       "createdAt": "2025-01-10T10:00:00Z",
-      "updatedAt": "2025-01-10T10:00:00Z",
+      "updatedAt": "2026-01-08T15:44:20.089Z",
       "owner": 1
     },
     {
       "name": "TestTeam",
       "users": [],
       "createdAt": "2025-12-23T13:45:18.389Z",
-      "updatedAt": "2025-12-23T13:45:18.389Z",
+      "updatedAt": "2026-01-08T15:44:20.089Z",
       "id": 3
     },
     {
@@ -31,43 +31,25 @@
       "name": "NWERWEREREQWRQWE",
       "users": [
         2,
-        1,
         3,
         4
       ],
       "owner": 4,
       "createdAt": "2026-01-06T08:35:24.600Z",
-      "updatedAt": "2026-01-06T08:35:58.962Z"
+      "updatedAt": "2026-01-08T15:44:20.089Z"
     }
   ],
   "users": [
     {
       "id": 1,
-      "displayName": "Alice Johnson",
-      "email": "alice@example.com",
-      "secret": "Alice123456!",
       "firstName": "Alice",
       "lastName": "Johnson",
-      "createdAt": "2025-01-10T10:00:00Z",
-      "updatedAt": "2025-01-10T10:00:00Z"
-    },
-    {
-      "id": 2,
-      "displayName": "B. Lee",
-      "email": "bob@example.com",
-      "firstName": "Bob",
-      "lastName": "Lee",
-      "createdAt": "2025-01-10T10:00:00Z",
-      "updatedAt": "2025-01-10T10:00:00Z"
-    },
-    {
-      "id": 3,
-      "displayName": "Charlie",
-      "email": "charlie@example.com",
-      "firstName": "Charlie",
-      "lastName": "Chen",
-      "createdAt": "2025-01-10T10:00:00Z",
-      "updatedAt": "2025-01-10T10:00:00Z"
+      "email": "alice@example.com",
+      "displayName": "Alice Johnson",
+      "secret": "Alice1234!",
+      "createdAt": "2026-01-09T13:26:57.595Z",
+      "updatedAt": "2026-01-09T15:13:14.323Z",
+      "isAdmin": true
     },
     {
       "firstName": "Test",
@@ -79,6 +61,17 @@
       "updatedAt": "2026-01-06T08:13:56.191Z",
       "isAdmin": true,
       "id": 4
+    },
+    {
+      "firstName": "Admin",
+      "lastName": "Adminov",
+      "email": "admin@admin.com",
+      "displayName": "Administrator",
+      "secret": "Admin1234!",
+      "createdAt": "2026-01-08T13:45:32.120Z",
+      "updatedAt": "2026-01-08T13:45:32.120Z",
+      "isAdmin": true,
+      "id": 5
     }
   ],
   "projects": [
@@ -92,7 +85,8 @@
       ],
       "memberIds": [
         2,
-        3
+        3,
+        1
       ],
       "status": "active",
       "posts": [],
@@ -111,8 +105,8 @@
         2
       ],
       "memberIds": [
-        1,
-        2
+        2,
+        1
       ],
       "status": "completed",
       "posts": [
